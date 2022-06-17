@@ -1,0 +1,39 @@
+.aboutUs {
+    text-align: center;
+    font: 27px "Century Gothic";
+    color: #3c3f42;
+    padding-top: 70px;
+    padding-bottom: 20px;
+    /* padding-top: 25px;
+    margin: 40px 10% 30px 10%;  */
+  }
+  
+  .whyUs {
+    text-align: center;
+    font: 27px "Century Gothic";
+    letter-spacing: 5px;
+    font-weight: bold;
+    color: #3c3f42;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* padding-left: 40px; */
+  }
+  
+  .description {
+    font-family: "Century Gothic", sans-serif;
+    color: black;
+    font-size: 18px;
+    text-align: justify;
+    /* padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 10px; */
+    line-height: 30px;
+    font-style: italic;
+    margin: auto 200px;
+  }
+  
+  .line_decorator {
+    border-bottom: solid 5px #3fceaa;
+    width: 30%;
+    margin: 50px auto;
+  }

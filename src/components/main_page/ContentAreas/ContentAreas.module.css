@@ -1,0 +1,53 @@
+.content_areas {
+    padding-bottom: 30px;
+    background: linear-gradient(
+      to left,
+      #ffbb4e 0%,
+      #ffbb4e 33.5%,
+      #3fceaa 33.5%,
+      #3fceaa 67%,
+      #f64b6a 67%,
+      #f64b6a 100%
+    );
+  }
+  
+  .all_areas {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .name {
+    text-align: center;
+    color: #ffc400;
+    font: 18px "Century Gothic";
+    font-weight: bold;
+    letter-spacing: 3px;
+  }
+  
+  .lineDecorator {
+    border-bottom: solid 1px black;
+    width: 225px;
+    margin: auto;
+  }
+  
+  .info {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: justify;
+    font: 17px "Century Gothic";
+  }
+  
+  .areas {
+    text-align: center;
+    font: 25px "Century Gothic";
+    color: #ffffff;
+    letter-spacing: 4px;
+    margin: 100px 10% 30px 10%;
+    padding-top: 30px;
+  }
+  
+  .area {
+    margin: 10px 35px 20px 35px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px #000000;
+  }
