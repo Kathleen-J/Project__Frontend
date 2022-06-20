@@ -1,12 +1,12 @@
 .choose {
-    text-align: center;
-    font: 27px "Montserrat";
-    color: #3c3f42;
-    padding-top: 100px;
-    padding-bottom: 150px;
-    background-color: #4d4d4d2c;
-  }
-  
+  text-align: center;
+  font: 27px "Montserrat";
+  color: #3c3f42;
+  padding-top: 100px;
+  padding-bottom: 150px;
+  background-color: #4d4d4d2c;
+}
+
 .choose_program {
   border: 1px solid #f09c0c;
   margin-left: 500px;

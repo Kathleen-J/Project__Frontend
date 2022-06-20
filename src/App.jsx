@@ -1,25 +1,34 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/main_page/Header/Header";
-import Footer from "./components/main_page/Footer/Footer.jsx";
 import Main from "./components/main_page/Main/Main";
 import Programs from "./components/main_page/Programs/Programs";
+import Login from "./components/Login_Signup/Login/Login";
+import Signup from "./components/Login_Signup/Signup/Signup";
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
-        <Routes>          
-          <Route exact path={'/'} element={<Main />}/>
+        <Routes>
+          <Route exact path={"/"} element={<Main />} />
         </Routes>
         <Routes>
-          <Route path={'/programs'} element={<Programs data={props.data.areas} />}/>
+          <Route
+            path={"/programs"}
+            element={<Programs data={props.data.areas} />}
+          />
         </Routes>
-        <Footer />
+        <Routes>
+          <Route exact path={"/login"} element={<Login />} />
+        </Routes>
+        <Routes>
+          <Route exact path={"/signup"} element={<Signup />} />
+        </Routes>
       </div>
-      </BrowserRouter>
+    </BrowserRouter>
   );
 };
 

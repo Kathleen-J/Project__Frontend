@@ -1,26 +1,26 @@
 .all_areas_nav {
-    display: flex;
-    flex-direction: space-between;
-    font: 17px "Montserrat";
-    padding-top: 25px;
-    font-size: 25px;
+  display: flex;
+  flex-direction: space-between;
+  font: 17px "Montserrat";
+  padding-top: 25px;
+  font-size: 25px;
 }
 
 .area_btn {
-    border: 2px solid #3fceaa;
-    background-color: white;
-    margin: 0 10px;
-    padding: 0 10px;
-    box-shadow: 2px 2px 2px 1px #adadad;
+  border: 2px solid #3fceaa;
+  background-color: white;
+  margin: 0 10px;
+  padding: 0 10px;
+  box-shadow: 2px 2px 2px 1px #adadad;
 }
 
 .area_btn:hover {
-    background-color: #3fceaa;
-    color: white;
+  background-color: #3fceaa;
+  color: white;
 }
 
 .areas_nav {
-    font: 25px "Montserrat";
-    color: black;
-    font-weight: bold;
-} 
+  font: 25px "Montserrat";
+  color: black;
+  font-weight: bold;
+}

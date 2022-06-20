@@ -3,37 +3,38 @@
     padding-top: 30px;
     padding-left: 30px;
     width: 15%;
-}
-
-.filter {
+  }
+  
+  .filter {
     position: fixed;
-}
-
-.education_form {
+  }
+  
+  .education_form {
     font: 17px "Montserrat";
     color: #000000ad;
     font-weight: bold;
-}
-
-.forms {
+  }
+  
+  .forms {
     display: flex;
     flex-direction: column;
     font: 17px "Montserrat";
     padding-top: 20px;
     line-height: 30px;
-}
-
-.forms > a {
+  }
+  
+  .forms > a {
     color: #21c0a5;
-}
-
-.forms > a:hover {
+  }
+  
+  .forms > a:hover {
     color: #21c0a5;
     background-color: #21c0a615;
-}
-
-.line_decoration {
+  }
+  
+  .line_decoration {
     border-bottom: 2px solid #21c0a5;
     padding-top: 20px;
     width: 170px;
-}
+  }
+  

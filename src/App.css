@@ -1,11 +1,12 @@
 body {
     height: 100%;
-}
-
-.App {
-    min-height: 100%;
-}
-
-.main{
-    min-height: 100%;
-}
+    margin: 0;
+    padding: 0;
+  }
+  
+  .App {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  

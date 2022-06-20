@@ -1,65 +1,65 @@
 .content_areas {
-    padding-bottom: 30px;
-    background: linear-gradient(
-      to left,
-      #ffbb4e 0%,
-      #ffbb4e 33.5%,
-      #3fceaa 33.5%,
-      #3fceaa 67%,
-      #f64b6a 67%,
-      #f64b6a 100%
-    );
-  }
-  
-  .all_areas {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .name {
-    text-align: center;
-    font: 18px "Montserrat";
-    font-weight: bold;
-    letter-spacing: 3px;
-  }
+  padding-bottom: 30px;
+  background: linear-gradient(
+    to left,
+    #ffbb4e 0%,
+    #ffbb4e 33.5%,
+    #3fceaa 33.5%,
+    #3fceaa 67%,
+    #f64b6a 67%,
+    #f64b6a 100%
+  );
+}
 
-  .development  {
-    color: #f64b6a;
-  }
+.all_areas {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .design {
-    color: #3fceaa;
-  }
+.name {
+  text-align: center;
+  font: 18px "Montserrat";
+  font-weight: bold;
+  letter-spacing: 3px;
+}
 
-  .languages {
-    color: #ffbb4e;
-  }
-  
-  .lineDecorator {
-    border-bottom: solid 1px black;
-    width: 225px;
-    margin: auto;
-  }
-  
-  .info {
-    padding-left: 10%;
-    padding-right: 10%;
-    text-align: justify;
-    letter-spacing: 0.5px;
-    font: 17px "Montserrat";
-  }
-  
-  .areas {
-    text-align: center;
-    font: 25px "Montserrat";
-    color: #ffffff;
-    letter-spacing: 4px;
-    margin: 100px 10% 30px 10%;
-    padding-top: 30px;
-  }
-  
-  .area {
-    margin: 10px 35px 20px 35px;
-    background-color: white;
-    box-shadow: 0px 0px 5px 0px #000000;
-  }
+.development {
+  color: #f64b6a;
+}
+
+.design {
+  color: #3fceaa;
+}
+
+.languages {
+  color: #ffbb4e;
+}
+
+.lineDecorator {
+  border-bottom: solid 1px black;
+  width: 225px;
+  margin: auto;
+}
+
+.info {
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: justify;
+  letter-spacing: 0.5px;
+  font: 17px "Montserrat";
+}
+
+.areas {
+  text-align: center;
+  font: 25px "Montserrat";
+  color: #ffffff;
+  letter-spacing: 4px;
+  margin: 100px 10% 30px 10%;
+  padding-top: 30px;
+}
+
+.area {
+  margin: 10px 35px 20px 35px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #000000;
+}

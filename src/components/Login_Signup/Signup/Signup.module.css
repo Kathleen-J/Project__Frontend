@@ -1,0 +1,8 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #21c0a5, #f7a71b);
+  margin-top: 68px;
+  min-height: calc(100vh - 68px);
+}

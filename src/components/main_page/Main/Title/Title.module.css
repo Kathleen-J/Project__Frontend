@@ -1,9 +1,9 @@
 .title {
-    background-color: #3fceaa;
-    display: flex;
-    justify-content: space-between;
-  }
-  
+  background-color: #3fceaa;
+  display: flex;
+  justify-content: space-between;
+}
+
 span {
   font-weight: bold;
   font-size: 55px;
@@ -11,7 +11,7 @@ span {
 
 .education_online {
   padding: 100px 100px 10px 100px;
-  font: 20px 'Montserrat';
+  font: 20px "Montserrat";
   letter-spacing: 10px;
   color: #696f74;
   margin: 0;
@@ -19,7 +19,7 @@ span {
 
 .education {
   padding: 0px 100px;
-  font: 50px 'Montserrat';
+  font: 50px "Montserrat";
   color: #292e33;
 }
 
@@ -47,5 +47,5 @@ span {
   font-size: 25px;
   color: #3c3f42;
   padding-left: 100px;
-  font: 20px 'Montserrat';
+  font: 20px "Montserrat";
 }

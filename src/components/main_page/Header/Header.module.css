@@ -6,7 +6,7 @@
   justify-content: space-between;
   position: fixed;
   right: 0;
-  left: 0;   
+  left: 0;
 }
 
 .logo {
@@ -15,6 +15,10 @@
   color: #acacac;
   letter-spacing: 2px;
   justify-content: flex-start;
+}
+
+a:focus {
+  outline: 0;
 }
 
 .choose__program {
@@ -50,17 +54,17 @@
   text-shadow: 0 3px 5px rgb(199 168 168);
 }
 
-.navbar a.logIn:hover,
-.navbar a.logIn.active,
-.navbar a.singUp:hover,
-.navbar a.singUp.active {
+.logIn:hover,
+.logIn.active,
+.singUp:hover,
+.singUp.active {
   color: white;
   border: 1px solid #f7a71b;
   background-color: #f7a71b;
   box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
 }
 
-a.choose__program:hover,
-a.choose__program:active {
+.choose__program:hover,
+.choose__program:active {
   color: #21c0a5;
 }
