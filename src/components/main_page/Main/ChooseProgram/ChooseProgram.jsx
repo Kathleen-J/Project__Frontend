@@ -1,11 +1,13 @@
 import css from "./ChooseProgram.module.css";
+import { Link } from "react-router-dom";
+
 
 const ChooseProgram = () => {
   return (
     <div className={css.choose}>
-      <a href="#/programs" className={css.choose_program}>
+      <Link to="/programs" className={css.choose_program}>
         ВЫБРАТЬ ПРОГРАММУ
-      </a>
+      </Link>
     </div>
   );
 };

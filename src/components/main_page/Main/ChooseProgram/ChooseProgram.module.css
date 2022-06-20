@@ -1,0 +1,24 @@
+.choose {
+    text-align: center;
+    font: 27px "Montserrat";
+    color: #3c3f42;
+    padding-top: 100px;
+    padding-bottom: 150px;
+    background-color: #4d4d4d2c;
+  }
+  
+.choose_program {
+  border: 1px solid #f09c0c;
+  margin-left: 500px;
+  margin-right: 500px;
+  text-decoration: none;
+  color: rgb(231, 231, 231);
+  background-color: #f7a71b;
+  padding: 10px;
+  box-shadow: 0px 0px 1px 0px #000000;
+}
+
+.choose_program:hover {
+  background-color: #f7a61bd5;
+  border-color: #f7a61bd5;
+}

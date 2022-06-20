@@ -1,24 +1,25 @@
 import "./App.css";
+import React from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./components/main_page/Header/Header";
 import Footer from "./components/main_page/Footer/Footer.jsx";
-import About from "./components/main_page/About/About.jsx";
-import AboutUs from "./components/main_page/AboutUs/AboutUs.jsx";
-import ContentAreas from "./components/main_page/ContentAreas/ContentAreas.jsx";
-import ChooseProgram from "./components/main_page/ChooseProgram/ChooseProgram.jsx";
-import React from "react";
+import Main from "./components/main_page/Main/Main";
+import Programs from "./components/main_page/Programs/Programs";
 
-const App = () => {
+const App = (props) => {
   return (
-    <div className="App">
-      <Header />
-      <div className="main">
-        <About />
-        <AboutUs />
-        <ContentAreas />
-        <ChooseProgram />
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Routes>          
+          <Route exact path={'/'} element={<Main />}/>
+        </Routes>
+        <Routes>
+          <Route path={'/programs'} element={<Programs data={props.data.areas} />}/>
+        </Routes>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+      </BrowserRouter>
   );
 };
 

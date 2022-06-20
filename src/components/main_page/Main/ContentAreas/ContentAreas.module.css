@@ -18,10 +18,21 @@
   
   .name {
     text-align: center;
-    color: #ffc400;
-    font: 18px "Century Gothic";
+    font: 18px "Montserrat";
     font-weight: bold;
     letter-spacing: 3px;
+  }
+
+  .development  {
+    color: #f64b6a;
+  }
+
+  .design {
+    color: #3fceaa;
+  }
+
+  .languages {
+    color: #ffbb4e;
   }
   
   .lineDecorator {
@@ -34,12 +45,13 @@
     padding-left: 10%;
     padding-right: 10%;
     text-align: justify;
-    font: 17px "Century Gothic";
+    letter-spacing: 0.5px;
+    font: 17px "Montserrat";
   }
   
   .areas {
     text-align: center;
-    font: 25px "Century Gothic";
+    font: 25px "Montserrat";
     color: #ffffff;
     letter-spacing: 4px;
     margin: 100px 10% 30px 10%;

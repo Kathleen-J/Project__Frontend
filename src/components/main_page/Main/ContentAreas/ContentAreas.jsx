@@ -7,7 +7,7 @@ const ContentAreas = () => {
         <div className={css.areas}>Направления</div>
         <div className={css.all_areas}>
           <div className={css.area}>
-            <p className={css.name}>Программирование</p>
+            <p className={`${css.name} ${css.development}`}>Программирование</p>
             <div className={css.lineDecorator}></div>
             <p className={css.info}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
@@ -23,7 +23,7 @@ const ContentAreas = () => {
             </p>
           </div>
           <div className={css.area}>
-            <p className={css.name}>Дизайн</p>
+            <p className={`${css.name} ${css.design}`}>Дизайн</p>
             <div className={css.lineDecorator}></div>
             <p className={css.info}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
@@ -39,7 +39,7 @@ const ContentAreas = () => {
             </p>
           </div>
           <div className={css.area}>
-            <p className={css.name}>Иностранные языки</p>
+            <p className={`${css.name} ${css.languages}`}>Иностранные языки</p>
             <div className={css.lineDecorator}></div>
             <p className={css.info}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi

@@ -1,65 +1,66 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    background-color: #ffffff;
-    padding: 20px;
-  }
-  
-  .logo {
-    font: 20px "Verdana";
-    text-decoration: none;
-    font-weight: bold;
-    color: #acacac;
-    letter-spacing: 2px;
-  }
-  
-  .choose__program {
-    font: 15px "Verdana";
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
-  }
-  
-  .singUp {
-    font: 15px "Arial Black";
-    text-decoration: none;
-    color: white;
-    border: 1px solid #ebcb62f5;
-    background-color: #ebcb62f5;
-    font-weight: bold;
-    padding: 5px;
-    box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
-    text-shadow: 0 3px 5px rgb(199 168 168);
-  }
-  
-  .logIn {
-    font: 15px "Arial Black";
-    text-decoration: none;
-    color: white;
-    border: 1px solid #ebcb62f5;
-    background-color: #ebcb62f5;
-    font-weight: bold;
-    margin-right: 10px;
-    padding: 5px;
-    box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
-    text-shadow: 0 3px 5px rgb(199 168 168);
-  }
-  
-  .navbar a.logIn:hover,
-  .navbar a.logIn.active,
-  .navbar a.singUp:hover,
-  .navbar a.singUp.active {
-    color: white;
-    border: 1px solid #f7a71b;
-    background-color: #f7a71b;
-    box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
-  }
-  
-  a.choose__program:hover,
-  a.choose__program:active {
-    color: white;
-    border: 1px solid #8ef13c;
-    background-color: #8ef13c;
-    box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
-    padding: 0 20px;
-  }
+  display: flex;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 5px 0.1px #adadad;
+  padding: 20px;
+  justify-content: space-between;
+  position: fixed;
+  right: 0;
+  left: 0;   
+}
+
+.logo {
+  font: 22px "Montserrat";
+  text-decoration: none;
+  color: #acacac;
+  letter-spacing: 2px;
+  justify-content: flex-start;
+}
+
+.choose__program {
+  font: 15px "Montserrat";
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  padding-top: 3px;
+}
+
+.singUp {
+  font: 18px "Fredoka";
+  text-decoration: none;
+  color: white;
+  border: 1px solid #ebcb62f5;
+  background-color: #ebcb62f5;
+  font-weight: bold;
+  padding: 5px;
+  box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
+  text-shadow: 0 3px 5px rgb(199 168 168);
+}
+
+.logIn {
+  font: 18px "Fredoka";
+  text-decoration: none;
+  color: white;
+  border: 1px solid #ebcb62f5;
+  background-color: #ebcb62f5;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 5px;
+  box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
+  text-shadow: 0 3px 5px rgb(199 168 168);
+}
+
+.navbar a.logIn:hover,
+.navbar a.logIn.active,
+.navbar a.singUp:hover,
+.navbar a.singUp.active {
+  color: white;
+  border: 1px solid #f7a71b;
+  background-color: #f7a71b;
+  box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
+}
+
+a.choose__program:hover,
+a.choose__program:active {
+  color: #21c0a5;
+}

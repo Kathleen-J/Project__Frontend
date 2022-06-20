@@ -1,0 +1,51 @@
+.title {
+    background-color: #3fceaa;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+span {
+  font-weight: bold;
+  font-size: 55px;
+}
+
+.education_online {
+  padding: 100px 100px 10px 100px;
+  font: 20px 'Montserrat';
+  letter-spacing: 10px;
+  color: #696f74;
+  margin: 0;
+}
+
+.education {
+  padding: 0px 100px;
+  font: 50px 'Montserrat';
+  color: #292e33;
+}
+
+.description_one {
+  padding-left: 200px;
+}
+
+.description_two {
+  padding-left: 400px;
+}
+
+.skillford {
+  font-size: 25px;
+  color: #3c3f42;
+  padding-left: 100px;
+}
+
+.fox {
+  width: 500px;
+  height: 500px;
+  padding-top: 120px;
+}
+
+.skillford {
+  font-size: 25px;
+  color: #3c3f42;
+  padding-left: 100px;
+  font: 20px 'Montserrat';
+}
