@@ -18,7 +18,7 @@ const App = (props) => {
         <Routes>
           <Route
             path={"/programs"}
-            element={<Programs data={props.data.areas} />}
+            element={<Programs data={props.data} />}
           />
         </Routes>
         <Routes>

@@ -5,8 +5,8 @@ import Title from "./Title/Title";
 const Content = (props) => {
     return (
         <div className={css.content}>
-            <Title data={props.data}/>
-            <All_Programs />
+            <Title areas={props.data.areas}/>
+            <All_Programs areas={props.data.areas} programs={props.data.programs}/>
         </div>
     )
 }
