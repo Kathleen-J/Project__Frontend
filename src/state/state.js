@@ -22,5 +22,6 @@ const state = {
         {id: 8, form_name: 'Профессия', area_name: 'Дизайн', discipline_name: '3D', profile_name: '3D художник', price: 115000},
         {id: 9, form_name: 'Курс', area_name: 'Иностранные языки', discipline_name: 'Английский язык', profile_name: 'Разговорный английский', price: 20000},
     ],
+    
 }
  export default state;

@@ -2,7 +2,7 @@ import css from "./Title.module.css";
 
 const Title = (props) => {
   const area = props.areas.map((el) => (
-    <a className={css.area_btn} href={`#?area=${el.id}`}>
+    <a className={css.area_btn} href={`#?area=${el.id}`}  key={el.id}>
       {el.area_name}
     </a>
   ));

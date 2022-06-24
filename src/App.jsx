@@ -6,6 +6,7 @@ import Main from "./components/main_page/Main/Main";
 import Programs from "./components/main_page/Programs/Programs";
 import Login from "./components/Login_Signup/Login/Login";
 import Signup from "./components/Login_Signup/Signup/Signup";
+import Program from "./components/Program";
 
 const App = (props) => {
   return (
@@ -26,6 +27,9 @@ const App = (props) => {
         </Routes>
         <Routes>
           <Route exact path={"/signup"} element={<Signup />} />
+        </Routes>
+        <Routes>
+          <Route exact path={"/program"} element={<Program />} />
         </Routes>
       </div>
     </BrowserRouter>
