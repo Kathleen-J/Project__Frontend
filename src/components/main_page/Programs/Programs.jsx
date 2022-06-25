@@ -9,7 +9,7 @@ const Programs = (props) => {
 
             <Side_Bar_Left />
 
-            <Content data={props.data}/>
+            <Content />
 
             <Side_Bar_Right />            
             
