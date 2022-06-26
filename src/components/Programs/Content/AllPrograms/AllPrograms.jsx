@@ -1,7 +1,7 @@
-import css from "./All_Programs.module.css";
+import css from "./AllPrograms.module.css";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import programs from "../../../../../state/programsStore";
+import programs from "../../../../state/programsStore";
 
 const All_Programs = observer((props) => {
 

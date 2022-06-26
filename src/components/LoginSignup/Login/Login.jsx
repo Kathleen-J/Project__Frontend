@@ -1,5 +1,5 @@
 import style from "./Login.module.css";
-import css from "../Login_Signup.module.css";
+import css from "../LoginSignup.module.css";
 
 const Login = () => {
   return (

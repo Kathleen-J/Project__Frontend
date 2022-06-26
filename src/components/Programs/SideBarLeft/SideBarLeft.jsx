@@ -1,6 +1,6 @@
-import css from "./Side_Bar_Left.module.css";
+import css from "./SideBarLeft.module.css";
 
-const Side_Bar_Left = () => {
+const SideBarLeft = () => {
   return (
     <div className={css.sideBar_left}>
       <div className={css.filter}>
@@ -16,4 +16,4 @@ const Side_Bar_Left = () => {
   );
 };
 
-export default Side_Bar_Left;
+export default SideBarLeft;
