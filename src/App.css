@@ -1,12 +1,37 @@
 body {
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
   }
-  
-  .App {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #292e33 rgba(255, 255, 255, 0);
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(65, 65, 65, 0.274);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #292e3377;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+@media (max-width: 585px) {
+  body {
+    height: 100vh;
+    width: 100vh;
   }
-  
+}

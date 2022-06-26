@@ -1,19 +1,45 @@
-.content_areas {
-  padding-bottom: 30px;
-  background: linear-gradient(
-    to left,
-    #ffbb4e 0%,
-    #ffbb4e 33.5%,
-    #3fceaa 33.5%,
-    #3fceaa 67%,
-    #f64b6a 67%,
-    #f64b6a 100%
-  );
-}
-
 .all_areas {
   display: flex;
   justify-content: space-between;
+}
+
+.areas_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 150px 0 40px 0;
+}
+
+.areas {
+  font: 30px "Montserrat";
+  color: black;
+}
+
+.areas_content .lineDecorator {
+  border-bottom: solid 3px #3fceaa;
+  width: 300px;
+}
+
+.development_area {
+  background-color: #f64b6a;
+  padding: 40px 0;
+}
+
+.design_area {
+  background-color: #3fceaa;
+  padding: 40px 0;
+}
+
+.languages_area {
+  background-color: #ffbb4e;
+  padding: 40px 0;
+}
+
+.area {
+  margin: 10px 35px 20px 35px;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #000000;
 }
 
 .name {
@@ -21,6 +47,8 @@
   font: 18px "Montserrat";
   font-weight: bold;
   letter-spacing: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .development {
@@ -36,7 +64,7 @@
 }
 
 .lineDecorator {
-  border-bottom: solid 1px black;
+  border-bottom: solid 1.5px black;
   width: 225px;
   margin: auto;
 }
@@ -47,19 +75,56 @@
   text-align: justify;
   letter-spacing: 0.5px;
   font: 17px "Montserrat";
+  line-height: 25px;
 }
 
-.areas {
-  text-align: center;
-  font: 25px "Montserrat";
-  color: #ffffff;
-  letter-spacing: 4px;
-  margin: 100px 10% 30px 10%;
-  padding-top: 30px;
+@media (max-width: 1066px) {
+  .development_area .lineDecorator, .design_area .lineDecorator {
+    margin-top: 40px;
+  }
 }
 
-.area {
-  margin: 10px 35px 20px 35px;
-  background-color: white;
-  box-shadow: 0px 0px 5px 0px #000000;
+@media (max-width: 976px) {
+  .all_areas {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 976px) {
+  .all_areas {
+    background: linear-gradient(
+      to top,
+      #ffbb4e 0%,
+      #ffbb4e 33.5%,
+      #3fceaa 33.5%,
+      #3fceaa 67%,
+      #f64b6a 67%,
+      #f64b6a 100%
+    );
+  }
+}
+
+@media (max-width: 976px) {
+  .area {
+    margin: auto 80px;
+  }
+}
+
+@media (max-width: 976px) {
+  .info {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media (max-width: 976px) {
+  .areas_content .lineDecorator {
+    width: 200px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .name, .info {
+    font-size: 23px;
+  }
 }

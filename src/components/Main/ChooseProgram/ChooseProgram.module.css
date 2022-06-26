@@ -2,15 +2,14 @@
   text-align: center;
   font: 27px "Montserrat";
   color: #3c3f42;
-  padding-top: 100px;
-  padding-bottom: 150px;
+  padding-top: 200px;
+  padding-bottom: 300px;
   background-color: #4d4d4d2c;
 }
 
 .choose_program {
   border: 1px solid #f09c0c;
-  margin-left: 500px;
-  margin-right: 500px;
+  margin: auto 500px;
   text-decoration: none;
   color: rgb(231, 231, 231);
   background-color: #f7a71b;
@@ -21,4 +20,10 @@
 .choose_program:hover {
   background-color: #f7a61bd5;
   border-color: #f7a61bd5;
+}
+
+@media (max-width: 1354px) {
+  .choose_program {
+    margin: auto;
+  }
 }

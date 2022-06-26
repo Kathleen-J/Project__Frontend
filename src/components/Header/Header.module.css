@@ -68,3 +68,16 @@ a:focus {
 .choose__program:active {
   color: #21c0a5;
 }
+
+@media (max-width: 500px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar div {
+    margin-top: 20px;
+    margin-left: 30%;
+  }
+}

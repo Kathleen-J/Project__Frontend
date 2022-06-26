@@ -31,21 +31,50 @@ span {
   padding-left: 400px;
 }
 
-.skillford {
-  font-size: 25px;
-  color: #3c3f42;
-  padding-left: 100px;
-}
-
 .fox {
   width: 500px;
   height: 500px;
   padding-top: 120px;
 }
 
-.skillford {
+.skillfox {
   font-size: 25px;
   color: #3c3f42;
   padding-left: 100px;
   font: 20px "Montserrat";
+}
+
+
+@media (max-width: 1197px) {
+  .education_right {
+    display: none;
+  }
+}
+
+@media (max-width: 1284px) {
+  .description_two {
+    padding: 0;
+    margin: 0;
+    padding-left: 400px;
+  }
+}
+
+@media (max-width: 697px) {
+  span, .education {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 500px) {
+  .title {
+    padding: 50px 5px 10px 5px;
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+@media (min-width: 1700px) {
+  .fox {
+    padding-right: 20vh;
+  }
 }

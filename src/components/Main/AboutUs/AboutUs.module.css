@@ -1,33 +1,52 @@
 .aboutUs {
-    text-align: center;
-    font: 27px "Montserrat";
-    color: #3c3f42;
-    padding-top: 70px;
-    padding-bottom: 20px;
-  }
-  
-  .whyUs {
-    text-align: center;
-    font: 27px "Montserrat";
-    letter-spacing: 5px;
-    font-weight: bold;
-    color: #3c3f42;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  
+  text-align: center;
+  font: 27px "Montserrat";
+  color: #3c3f42;
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
+
+.whyUs {
+  text-align: center;
+  font: 27px "Montserrat";
+  letter-spacing: 5px;
+  font-weight: bold;
+  color: #3c3f42;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.description {
+  font-family: "Montserrat", sans-serif;
+  color: black;
+  font-size: 18px;
+  text-align: justify;
+  line-height: 30px;
+  font-style: italic;
+  margin: auto 200px;
+}
+
+.line_decorator {
+  border-bottom: solid 5px #3fceaa;
+  width: 30%;
+  margin: 50px auto;
+}
+
+@media (max-width: 700px) {
   .description {
-    font-family: "Montserrat", sans-serif;
-    color: black;
-    font-size: 18px;
-    text-align: justify;
-    line-height: 30px;
-    font-style: italic;
-    margin: auto 200px;
+    font-size: 22px;
+    margin: auto 80px;
   }
-  
+}
+
+@media (max-width: 700px) {
   .line_decorator {
-    border-bottom: solid 5px #3fceaa;
-    width: 30%;
-    margin: 50px auto;
+    width: 60%;
   }
+}
+
+@media (min-width: 1500px) {
+  .description {
+    font-size: 23px;
+  }
+}

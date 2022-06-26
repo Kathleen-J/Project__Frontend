@@ -6,3 +6,9 @@
   margin-top: 68px;
   min-height: calc(100vh - 68px);
 }
+
+@media (max-width: 585px) {
+  .modal {
+    min-height: calc(100vh + 68px);
+  }
+}
