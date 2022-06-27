@@ -1,0 +1,190 @@
+.card {
+  padding-top: 68px;
+  margin-bottom: 100px;
+  font-family: 'Montserrat';
+}
+
+
+
+/* education */
+
+.education {
+  background-color: #e6e7e8;
+  padding: 30px 100px;
+}
+
+.education__form {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 50px;
+}
+
+.education__name {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 150px;
+}
+
+.education__program {
+  font-size: 45px;
+  margin-right: 10px;
+}
+
+.education__area {
+  font-size: 30px;
+  background-color: #fdd85f;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+
+
+/* button */
+
+.btn {
+  margin: 0 auto;
+  min-width: 80%;
+  display: block;
+  font-size: 23px;
+  background-color: #00dc7d;
+  padding: 7px;
+  border: 2px solid #00dc7d;
+  cursor: pointer;
+}
+
+
+
+/* skills */
+
+.skills {
+  padding: 120px 40px 180px 40px;
+}
+
+.skills__title {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 80px;
+}
+
+.skills__description_block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skills__description {
+  background-color: #f1f2f2;
+  padding: 20px;
+  margin: auto 20px;
+  border-radius: 20px;
+  font-size: 20px;
+  font-family: 'Fredoka';
+  box-shadow: 0px 0px 5px 2px #d4dade;
+}
+
+
+
+/* program */
+
+.program {
+  padding: 50px 40px 100px 40px;
+  background-color: #3fceaa;
+}
+
+.program__title {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 45px;
+}
+
+.program_all {
+  display: flex;
+  flex-direction: column;
+}
+
+.program__block {
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  box-shadow: 0px 0px 5px 1px #8c8c8c;
+}
+
+.program__subtitle {
+  font-weight: bold;
+  padding-bottom: 20px;
+  text-decoration: underline 2px;
+}
+
+.program__description {
+  letter-spacing: 1px;
+  text-align: justify;
+}
+
+.lineDecorator {
+    border-bottom: dashed 2px #7a7a7a;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+/* curator */
+
+.curator {
+  background-color: #e6e7e8;
+  padding: 70px 20px 50px 20px;
+  margin-bottom: 100px;
+}
+
+.curator__title {
+  font-weight: bold;
+  font-size: 25px;
+  padding-bottom: 45px;
+}
+
+.curator__description {
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  font-size: 22px;
+  box-shadow: 0px 0px 3px 1px #8c8c8c;
+  margin: 0 40px;
+  font-family: 'Fredoka';
+}
+
+
+
+/* adaptive layout */
+
+@media (max-width: 868px) {
+
+  .education__name {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .education {
+    padding-top: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .education__area {
+    margin-top: 30px;
+  }
+
+  .skills__description_block {
+    flex-wrap: wrap;
+  }
+
+  .skills__description {
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    min-width: 90%;
+  }
+
+}

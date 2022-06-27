@@ -1,64 +1,63 @@
 .all_programs {
-    font-family: "Montserrat";
-    font-size: 20px;
-  }
-  
-  .program_block {
-    margin-top: 60px;
-    background-color: #3fceaa;
-    padding: 30px;
-    margin-right: 30px;
-    border: 1px solid #adadad;
-  }
-  
-  .area_name {
-    font-weight: bold;
-  }
-  
-  .form_name {
-    color: #878787;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 20px;
-  }
-  
-  .program_name {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .discipline {
-    font-size: 15px;
-    background-color: #fdcc2a9d;
-    padding: 0px 7px;
-    border-radius: 20px;
-    min-width: 50px;
-    text-align: center;
-  }
-  
-  .programs {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .program {
-    padding: 10px;
-    font-size: 18px;
-    width: 45%;
-    margin-top: 30px;
-    border: 1.5px solid #e6e6e6;
-    box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
-    padding: 10px;
-    background-color: white;
-    line-height: 40px;
-  }
-  
-  .price {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 30px;
-  }
-  
+  font-family: "Montserrat";
+  font-size: 20px;
+}
+
+.program_block {
+  margin-top: 60px;
+  background-color: #3fceaa;
+  padding: 30px;
+  margin-right: 30px;
+  border: 1px solid #adadad;
+}
+
+.area_name {
+  font-weight: bold;
+}
+
+.form_name {
+  color: #878787;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.program_name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.discipline {
+  font-size: 15px;
+  background-color: #fdcc2a9d;
+  padding: 0px 7px;
+  border-radius: 20px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.programs {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.program {
+  padding: 10px;
+  font-size: 18px;
+  width: 45%;
+  margin-top: 30px;
+  border: 1.5px solid #e6e6e6;
+  box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
+  padding: 10px;
+  background-color: white;
+  line-height: 40px;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 30px;
+}

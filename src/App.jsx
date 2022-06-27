@@ -6,6 +6,7 @@ import Main from "./components/Main/Main";
 import Programs from "./components/Programs/Programs";
 import Login from "./components/LoginSignup/Login/Login";
 import Signup from "./components/LoginSignup/Signup/Signup";
+import Program from "./components/Programs/Program/Program";
 
 const App = (props) => {
   return (
@@ -16,6 +17,10 @@ const App = (props) => {
           <Route
             path={"/programs"}
             element={<Programs />}
+          />
+          <Route
+            path={"/program/*"}
+            element={<Program />}
           />
           <Route exact path={"/login"} element={<Login />} />
           <Route exact path={"/signup"} element={<Signup />} />

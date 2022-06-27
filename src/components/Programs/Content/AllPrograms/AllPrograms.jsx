@@ -2,8 +2,9 @@ import css from "./AllPrograms.module.css";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import programs from "../../../../state/programsStore";
+import { Link } from "react-router-dom";
 
-const All_Programs = observer((props) => {
+const AllPrograms = observer((props) => {
 
   useEffect(() => {
     (async() => {
@@ -19,14 +20,14 @@ const All_Programs = observer((props) => {
   }, []);
 
   const result = programs.areas.map( (area) =>
-    <div className={css.program_block} key={area.id}>
+    <div className={css.program_block} key={area.id} id={area.id}>
         <p className={css.area_name}>{area.name}</p>
         <div className={css.programs}>
             {
               programs.programs
                 .filter((program) => area.name === program.education_area)
                 .map((program) => (
-                  <div className={css.program} key={program.id}>
+                  <Link to={`/program/${program.id}`} className={css.program} key={program.id} id={program.id}>
                     <div className={css.program_name}>
                       <div>{program.education_form}</div>
                       <div className={css.discipline}>
@@ -38,7 +39,7 @@ const All_Programs = observer((props) => {
                       <div>Стоимость:</div>
                       <div>{program.price}</div>
                     </div>
-                  </div>
+                  </Link>
                 ))
             }
         </div>
@@ -52,5 +53,5 @@ const All_Programs = observer((props) => {
   );
 });
 
-export default All_Programs;
+export default AllPrograms;
 
