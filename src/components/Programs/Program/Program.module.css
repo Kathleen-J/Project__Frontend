@@ -35,7 +35,9 @@
   font-size: 30px;
   background-color: #fdd85f;
   padding: 10px;
-  border-radius: 25px;
+  border-radius: 27px;
+  min-width: 80px;
+  text-align: center;
 }
 
 
@@ -51,6 +53,7 @@
   padding: 7px;
   border: 2px solid #00dc7d;
   cursor: pointer;
+  color: white;
 }
 
 

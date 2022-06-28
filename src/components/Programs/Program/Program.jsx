@@ -1,19 +1,37 @@
 import css from "./Program.module.css";
+import programsStore from "../../../store/programsStore";
+import programStore from "../../../store/programStore";
+import { useEffect } from "react";
 
 const Program = (props) => {
+
+    useEffect(() => {
+        (async() => {
+
+          if (!programsStore.programs.length) {
+            await programsStore.getPrograms();    
+          }
+        })();
+      }, []);
+
+      const programId = programStore.getId();
+
+      const programTitle = programsStore.programs.filter((program) => program.id === programId).map((program) => (        
+        <div className={css.education} key={program.id}>    
+            <div className={css.education__form}>{program.education_form}</div>
+            <div className={css.education__name}>
+                <div className={css.education__program}>{program.education_program}</div>
+                <div className={css.education__area}>{program.discipline}</div>
+            </div>
+            <button className={css.btn} onClick={() => console.log(programStore.getId())}>Купить</button>
+        </div>
+      ))
+
+
     return (
         <div className={css.card}> 
-            
-            <div className={css.education}>    
-                <div className={css.education__form}>Профессия</div>
         
-                <div className={css.education__name}>
-                    <div className={css.education__program}>Full-stack разработчик</div>
-                    <div className={css.education__area}>Python</div>
-                </div>
-        
-                <button className={css.btn}>Купить</button>
-            </div>
+            {programTitle}
         
             <div className={css.skills}>
                 <div className={css.skills__title}>Чему вы научитесь</div>
