@@ -1,29 +1,49 @@
 import css from "./Program.module.css";
 import programsStore from "../../../store/programsStore";
-import programStore from "../../../store/programStore";
+// import programStore from "../../../store/programStore";
 import { useEffect } from "react";
+import { useLocation, useParams } from 'react-router-dom';
 
 const Program = (props) => {
+    // debugger
+    
+    
+    const location = useLocation();
+    const path = location.pathname;
+    // const pathIdx = location.pathname.length - 1;
+    // const path = +(location.pathname[pathIdx]);
+
+    const {id} = useParams();
+    console.log(id);
+
+    // useEffect(() => {
+    //     programsStore.getProgram(id);
+    //     console.log(programsStore.getProgram(id));
+    //   }, []);
 
     useEffect(() => {
-        (async() => {
+    (async() => {
 
-          if (!programsStore.programs.length) {
-            await programsStore.getPrograms();    
-          }
-        })();
-      }, []);
+        if (!programsStore.program.length) {
+        await programsStore.getProgram(id);
+        console.log(programsStore.program);  
 
-      const programId = programStore.getId();
-
-      const programTitle = programsStore.programs.filter((program) => program.id === programId).map((program) => (        
+        }
+    })();
+    }, [id]);
+      
+      
+      const programTitle = programsStore.program.map((program) => (        
         <div className={css.education} key={program.id}>    
             <div className={css.education__form}>{program.education_form}</div>
             <div className={css.education__name}>
-                <div className={css.education__program}>{program.education_program}</div>
-                <div className={css.education__area}>{program.discipline}</div>
+                <div className={css.education__program_name}>{program.education_program}</div>
+                <div className={css.education__discipline}>{program.discipline}</div>
             </div>
-            <button className={css.btn} onClick={() => console.log(programStore.getId())}>Купить</button>
+            <div className={css.price_block}>                
+                <div className={css.price}>Стоимость: {program.price}</div>
+                <button className={css.btn} id={program.id}>Купить</button>
+            </div>
         </div>
       ))
 
@@ -71,7 +91,7 @@ const Program = (props) => {
                     <div className={css.curator__description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laborum nihil obcaecati officiis, magni itaque! Quia, consectetur. Magni, blanditiis eligendi ex nesciunt enim, error suscipit quae ad perferendis mollitia labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laborum nihil obcaecati officiis, magni itaque! Quia, consectetur. Magni, blanditiis eligendi ex nesciunt enim, error suscipit quae ad perferendis mollitia labore.</div>
             </div>
         
-            <button className={css.btn}>Купить</button>
+            <button className={`${css.btn} ${css.btn_bottom}`} >Купить</button>
   
     </div>
     ) 

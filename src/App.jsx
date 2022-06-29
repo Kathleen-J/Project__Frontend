@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Programs from "./components/Programs/Programs";
@@ -19,7 +19,7 @@ const App = (props) => {
             element={<Programs />}
           />
           <Route
-            path={"/program/*"}
+            path={'/programs/:id'}
             element={<Program />}
           />
           <Route exact path={"/login"} element={<Login />} />

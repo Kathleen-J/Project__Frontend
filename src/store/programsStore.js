@@ -3,6 +3,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 class Programs {
   areas = [];
   programs = [];
+  program = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -32,6 +33,22 @@ class Programs {
 
       runInAction(() => {
         this.programs = [...program];
+      });
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
+
+  async getProgram(id) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/programs/${id}`
+      );
+      const program_result = await response.json();
+
+      runInAction(() => {
+        this.program = [program_result];
+        console.log(program_result);
       });
     } catch (e) {
       throw new Error(e.message);

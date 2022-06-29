@@ -8,16 +8,14 @@ import { Link } from "react-router-dom";
 const AllPrograms = observer((props) => {
 
   useEffect(() => {
-    (async() => {
       if (!programs.areas.length) {
-        await programs.getAreas();
+        programs.getAreas();
 
       }
       if (!programs.programs.length) {
-      await programs.getPrograms();
+         programs.getPrograms();
 
       }
-    })();
   }, []);
 
   const result = programs.areas.map( (area) =>
@@ -28,7 +26,7 @@ const AllPrograms = observer((props) => {
               programs.programs
                 .filter((program) => area.name === program.education_area)
                 .map((program) => (
-                  <Link to={`/program/${program.id}`} className={css.program} key={program.id} id={program.id} onClick={() => {programStore.changeId(program.id); window.scrollTo(0, 0); console.log(programStore.getId())}}>
+                  <Link to={`/programs/${program.id}`} className={css.program} key={program.id} id={program.id} onClick={() => {programStore.changeId(program.id); window.scrollTo(0, 0)}}>
                     <div className={css.program_name}>
                       <div>{program.education_form}</div>
                       <div className={css.discipline}>
@@ -49,7 +47,7 @@ const AllPrograms = observer((props) => {
 
   return (
     <div className={css.all_programs}>
-      {result}
+      {result}      
     </div>
   );
 });
