@@ -48,7 +48,6 @@ class Programs {
 
       runInAction(() => {
         this.program = [program_result];
-        console.log(program_result);
       });
     } catch (e) {
       throw new Error(e.message);

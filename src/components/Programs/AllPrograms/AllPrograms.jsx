@@ -1,8 +1,7 @@
 import css from "./AllPrograms.module.css";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import programs from "../../../../store/programsStore";
-import programStore from "../../../../store/programStore";
+import programs from "../../../store/programsStore";
 import { Link } from "react-router-dom";
 
 const AllPrograms = observer((props) => {
@@ -26,7 +25,7 @@ const AllPrograms = observer((props) => {
               programs.programs
                 .filter((program) => area.name === program.education_area)
                 .map((program) => (
-                  <Link to={`/programs/${program.id}`} className={css.program} key={program.id} id={program.id} onClick={() => {programStore.changeId(program.id); window.scrollTo(0, 0)}}>
+                  <Link to={`/programs/${program.id}`} className={css.program} key={program.id} id={program.id} onClick={() => {window.scrollTo(0, 0)}}>
                     <div className={css.program_name}>
                       <div>{program.education_form}</div>
                       <div className={css.discipline}>

@@ -1,18 +1,14 @@
 import css from "./Programs.module.css";
-import SideBarLeft from "./SideBarLeft/SideBarLeft";
-import SideBarRight from "./SideBarRight/SideBarRight";
-import Content from "./Content/Content";
+import Title from "./Title/Title";
+import AllPrograms from "./AllPrograms/AllPrograms";
 
 const Programs = (props) => {
     return (
         <div className={css.programs}>
-
-            <SideBarLeft />
-
-            <Content />
-
-            <SideBarRight />            
-            
+            <div className={css.content}>                
+                <Title />
+                <AllPrograms />
+            </div>
         </div>
     ) 
 }

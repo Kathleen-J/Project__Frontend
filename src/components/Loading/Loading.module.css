@@ -1,0 +1,12 @@
+.img {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 25vh;
+}
+
+.loading {
+    width: 35%;
+    height: 35%;
+
+}

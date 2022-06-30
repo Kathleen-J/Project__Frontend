@@ -1,7 +1,7 @@
 import css from "./Title.module.css";
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
-import programs from "../../../../store/programsStore";
+import programs from "../../../store/programsStore";
 
 const Title = observer((props) => {
 
@@ -20,18 +20,14 @@ const Title = observer((props) => {
       <div className={css.areas_nav}>Направления</div>
 
       <div className={css.all_areas_nav}>
-        <div>
           <a className={css.area_btn} href="#?area=all">
             Все
           </a>
-        </div>
-        <div>
           {programs.areas.map((area) => (
-            <a className={css.area_btn} href={`#?area=${area.id}`}  key={area.id}>
+            <a className={css.area_btn} href={`#?area=${area.id}`}  key={area.id} id={area.id}>
               {area.name}
             </a>
           ))}
-        </div>
       </div>
     </div>
   );

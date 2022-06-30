@@ -1,9 +1,7 @@
 import programsStore from "./programsStore";
-import programStore from './programStore';
 
 const stores = {
-    programsStore,
-    programStore
+    programsStore
 }
 
 export default stores;

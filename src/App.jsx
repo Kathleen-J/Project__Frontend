@@ -1,12 +1,13 @@
 import "./App.css";
-import React from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import React, { Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
-import Programs from "./components/Programs/Programs";
 import Login from "./components/LoginSignup/Login/Login";
 import Signup from "./components/LoginSignup/Signup/Signup";
-import Program from "./components/Programs/Program/Program";
+import Loading from "./components/Loading/Loading";
+const Programs = React.lazy(() => import("./components/Programs/Programs"));
+const Program = React.lazy(() => import("./components/Programs/Program/Program"));
 
 const App = (props) => {
   return (
@@ -16,11 +17,19 @@ const App = (props) => {
           <Route exact path={"/"} element={<Main />} />
           <Route
             path={"/programs"}
-            element={<Programs />}
+            element={
+              <Suspense fallback={<Loading />}>                
+                <Programs />
+              </Suspense>
+            }
           />
           <Route
             path={'/programs/:id'}
-            element={<Program />}
+            element={
+              <Suspense fallback={<Loading />}>                
+                <Program />
+              </Suspense>
+            }
           />
           <Route exact path={"/login"} element={<Login />} />
           <Route exact path={"/signup"} element={<Signup />} />

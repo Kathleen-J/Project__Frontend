@@ -1,39 +1,19 @@
 import css from "./Program.module.css";
 import programsStore from "../../../store/programsStore";
-// import programStore from "../../../store/programStore";
 import { useEffect } from "react";
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { observer } from "mobx-react-lite";
 
-const Program = (props) => {
-    // debugger
-    
-    
-    const location = useLocation();
-    const path = location.pathname;
-    // const pathIdx = location.pathname.length - 1;
-    // const path = +(location.pathname[pathIdx]);
+const Program = observer((props) => {
 
     const {id} = useParams();
-    console.log(id);
-
-    // useEffect(() => {
-    //     programsStore.getProgram(id);
-    //     console.log(programsStore.getProgram(id));
-    //   }, []);
 
     useEffect(() => {
-    (async() => {
-
-        if (!programsStore.program.length) {
-        await programsStore.getProgram(id);
-        console.log(programsStore.program);  
-
-        }
-    })();
-    }, [id]);
+        programsStore.getProgram(id);
+      }, [id]);
       
       
-      const programTitle = programsStore.program.map((program) => (        
+    const programTitle = programsStore.program.map((program) => (        
         <div className={css.education} key={program.id}>    
             <div className={css.education__form}>{program.education_form}</div>
             <div className={css.education__name}>
@@ -45,7 +25,7 @@ const Program = (props) => {
                 <button className={css.btn} id={program.id}>Купить</button>
             </div>
         </div>
-      ))
+    ))
 
 
     return (
@@ -91,10 +71,10 @@ const Program = (props) => {
                     <div className={css.curator__description}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laborum nihil obcaecati officiis, magni itaque! Quia, consectetur. Magni, blanditiis eligendi ex nesciunt enim, error suscipit quae ad perferendis mollitia labore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa laborum nihil obcaecati officiis, magni itaque! Quia, consectetur. Magni, blanditiis eligendi ex nesciunt enim, error suscipit quae ad perferendis mollitia labore.</div>
             </div>
         
-            <button className={`${css.btn} ${css.btn_bottom}`} >Купить</button>
+            <button className={`${css.btn} ${css.btn_bottom}`} id={id}>Купить</button>
   
     </div>
     ) 
-}
+})
 
 export default Program;

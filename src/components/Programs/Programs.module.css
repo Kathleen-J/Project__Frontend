@@ -1,5 +1,25 @@
 .programs{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding-top: 68px;
+    background-color: #e6e6e6ce;
+}
+
+.content {   
+    background-color: white;
+    padding-left: 30px;
+    padding-bottom: 50px;
+    width: 70%;
+    padding-top: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 650px) {
+    .content {
+        padding-top: 55px;
+    }
 }
