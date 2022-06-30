@@ -3,7 +3,8 @@
   background-color: #ffffff;
   box-shadow: 1px 1px 5px 0.1px #adadad;
   padding: 20px;
-  justify-content: space-between;
+  justify-content: space-between ;
+  align-items: center;
   position: fixed;
   right: 0;
   left: 0;
@@ -14,14 +15,13 @@
   text-decoration: none;
   color: #acacac;
   letter-spacing: 2px;
-  justify-content: flex-start;
 }
 
 a:focus {
   outline: 0;
 }
 
-.choose__program {
+.choose__program, .to_profile {
   font: 15px "Montserrat";
   text-decoration: none;
   color: black;
@@ -29,7 +29,7 @@ a:focus {
   padding-top: 3px;
 }
 
-.singUp {
+.singUp, .logIn, .singOut {
   font: 18px "Fredoka";
   text-decoration: none;
   color: white;
@@ -42,16 +42,7 @@ a:focus {
 }
 
 .logIn {
-  font: 18px "Fredoka";
-  text-decoration: none;
-  color: white;
-  border: 1px solid #ebcb62f5;
-  background-color: #ebcb62f5;
-  font-weight: bold;
   margin-right: 10px;
-  padding: 5px;
-  box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
-  text-shadow: 0 3px 5px rgb(199 168 168);
 }
 
 .logIn:hover,
@@ -65,8 +56,14 @@ a:focus {
 }
 
 .choose__program:hover,
-.choose__program:active {
+.choose__program:active, 
+.to_profile:hover, 
+.to_profile:active {
   color: #21c0a5;
+}
+
+button {
+  cursor: pointer;
 }
 
 @media (max-width: 500px) {

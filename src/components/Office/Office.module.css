@@ -1,0 +1,12 @@
+.content_block {
+    display: flex;
+  }
+  
+  .content {
+    flex: 0 0 80%;
+  }
+  
+  .side_bar {
+    background-color: #e6e6e6;
+    flex: 0 0 20%;
+  }
