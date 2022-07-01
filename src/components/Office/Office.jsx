@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import SideBar from "./SideBar/SideBar";
 import Profile from "./Content/CommonComponents/Profile/Profile";
 import EditPrograms from './Content/AdminPage/EditPrograms/EditPrograms';
+import Students from './Content/AdminPage/Students/Students';
+import Curators from './Content/AdminPage/Curators/Curators';
 
 
 const Office = () => {
@@ -16,9 +18,9 @@ const Office = () => {
             {/* <Route path={"/my-programs"} element={<MyPrograms />} /> */}
 
             {/* admin */}
-            {/* <Route path={"/students"} element={<Students />} /> */}
-            {/* <Route path={"/curators"} element={<Curators />} /> */}
+            <Route path={"/students"} element={<Students />} />
             <Route path={"/edit-programs"} element={<EditPrograms />} />
+            <Route path={"/curators"} element={<Curators />} />
 
             {/* curator */}
             {/* <Route path={"/my-students"} element={<MyStudents />} /> */}
