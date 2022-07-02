@@ -1,32 +1,54 @@
 import css from "./Students.module.css";
+import {Accordion} from 'react-bootstrap';
+import studentsStore from "../../../../../store/studentsStore";
+import { useEffect } from "react";
+import { observer } from "mobx-react-lite";
 
-const Students = () => {
-  return (
-    <div className={css.wrapper}>
+const Students = observer(() => {
 
-      <div className={css.card}>
-        <table className={css.table}>
-          <thead>
-            <tr className={css.title_block}>
-              <th className={`${css.title} ${css.title_left}`}>Логин</th>
-              <th className={`${css.title} ${css.title_two}`}>Статус</th>
-              <th className={`${css.title} ${css.title_three}`}>Дата создания</th>
-              <th className={`${css.title} ${css.title_rigth}`}>Дата изменения</th>
-            </tr>
-          </thead>
-          <tbody>
+  useEffect(() => {
+    if(!studentsStore.getStudents.length) {
+      studentsStore.getStudents();
+    }
+  }, []);
+
+  const card = studentsStore.students.map((student) => 
+    <div className={css.card} key={student.id}>
+    <Accordion.Item eventKey={student.id} >
+      <table className={css.table}>
+        <thead>
+          <tr className={css.title_block}>
+            <th className={`${css.title} ${css.title_left}`}>Логин</th>
+            <th className={`${css.title} ${css.title_two}`}>Статус</th>
+            <th className={`${css.title} ${css.title_three}`}>Дата создания</th>
+            <th className={`${css.title} ${css.title_rigth}`}>Дата изменения</th>
+          </tr>
+        </thead>
+        <tbody>
             <tr className={css.cells}>
-              <td className={`${css.cell} ${css.cell_left}`}>Student Login</td>
+              <td className={`${css.cell} ${css.cell_left}`}>{student.login}</td>
               <td className={css.cell}>                
-                <button className={`${css.status} ${css.status__active}`}>Заблокировать</button>
+                <button 
+                    className={`${css.status} ${student.status === 'active' ? css.status__active : css.status__deleted}`} 
+                    value={student.status === 'active' ? 'status__active' : 'status__deleted'} 
+                    id={student.id}
+                    onClick={(e) => 
+                      {if(e.target.value === 'status__active') 
+                        {studentsStore.deleteStudent(e.target.id)} 
+                      else if (e.target.value === 'status__deleted') 
+                        {studentsStore.updateStudent(e.target.id)}}}>
+                  {student.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
+                </button>
               </td>
-              <td className={`${css.cell} ${css.cell_three}`}>01.07.2022</td>
-              <td className={`${css.cell} ${css.cell_right}`}>01.07.2022</td>
+              <td className={`${css.cell} ${css.cell_three}`}>{new Date(student.created).toDateString().slice(4)}</td>
+              <td className={`${css.cell} ${css.cell_right}`}>{student.updated ? new Date(student.updated).toDateString().slice(4) : '-'}</td>
             </tr>
           </tbody>
-        </table>
-        <button className={css.status}> Дополнительно </button>
-
+      </table>
+      <Accordion.Header>
+        Дополнительно
+      </Accordion.Header>
+      <Accordion.Body>
         <div className={css.options}>
 
             <div className={css.change_block}>
@@ -88,10 +110,22 @@ const Students = () => {
                 </table>
             </div>
         </div>
-      </div>
+      </Accordion.Body>
+    </Accordion.Item>
+    </div>
+  )
+
+
+  return (
+    <div className={css.wrapper}>
+
+      <Accordion>        
+          {card}
+      </Accordion>
+
 
     </div>
   );
-};
+});
 
 export default Students;

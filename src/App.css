@@ -13,6 +13,31 @@ body {
   font-family: 'Montserrat';
 }
 
+.collapse {
+  height: 0;
+  overflow: hidden;
+}
+
+.show {
+  height: auto;
+  max-height: 2000px;
+}
+
+.accordion-button, .accordion-button.collapsed {
+  color: white;
+  width: max-content;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 17px;
+  font-family: "Montserrat";
+  background-color: rgb(255, 174, 53);
+  border: 1px solid rgb(255, 174, 53);
+}
+
+.accordion-header {
+  margin: 0;
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #292e33 rgba(255, 255, 255, 0);
