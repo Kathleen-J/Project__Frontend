@@ -2,16 +2,32 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 class Programs {
   students = [];
+  isFinishedDelete = false;
+  isFinishedUpdate = false;
+  status = null;
 
   constructor() {
     makeAutoObservable(this);
   }
 
+  changeIsFinishedDelete() {
+    this.isFinishedDelete = !this.isFinishedDelete
+  }
+
+  changeIsFinishedUpdate() {
+    this.isFinishedUpdate = !this.isFinishedUpdate
+  }
+
+  getStatus() {
+    return this.status;
+  }
+  
   async getStudents() {
     try {
       const response = await fetch(
         "http://localhost:3001/api/students"
       );
+      this.status = response.status;
       const students_response = await response.json();
 
       runInAction(() => {
@@ -21,22 +37,7 @@ class Programs {
       throw new Error(e.message);
     }
   }
-
-//   async getProgram(id) {
-//     try {
-//       const response = await fetch(
-//         `http://localhost:3001/api/programs/${id}`
-//       );
-//       const program_result = await response.json();
-
-//       runInAction(() => {
-//         this.program = [program_result];
-//       });
-//     } catch (e) {
-//       throw new Error(e.message);
-//     }
-//   }
-
+  
   async deleteStudent(id) {
     try {
       const response = await fetch(
@@ -49,6 +50,9 @@ class Programs {
           }
         }
       );
+      // if(response.status === 200) {
+      //   this.isFinished  = true; 
+      //  }
     } catch (e) {
       throw new Error(e.message);
     }
@@ -66,6 +70,9 @@ class Programs {
           }
         }
       );
+      // if(response.status === 200) {
+      //  this.isFinished  = true; 
+      // }
     } catch (e) {
       throw new Error(e.message);
     }

@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
 class Programs {
-  curators = [];
+  students_programs = [];
   isFinishedDelete = false;
   isFinishedUpdate = false;
 
@@ -17,43 +17,28 @@ class Programs {
     this.isFinishedUpdate = !this.isFinishedUpdate
   }
 
-  async getCurators() {
+  async getStudentsPrograms() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/curators"
+        "http://localhost:3001/api/studentsPrograms"
       );
-      const curators_response = await response.json();
+      const students_programs_response = await response.json();
 
       runInAction(() => {
-        this.curators = [...curators_response];
+        this.students_programs = [...students_programs_response];
       });
     } catch (e) {
       throw new Error(e.message);
     }
   }
 
-//   async getProgram(id) {
-//     try {
-//       const response = await fetch(
-//         `http://localhost:3001/api/programs/${id}`
-//       );
-//       const program_result = await response.json();
-
-//       runInAction(() => {
-//         this.program = [program_result];
-//       });
-//     } catch (e) {
-//       throw new Error(e.message);
-//     }
-//   }
-
-  async deleteCurator(id) {
+  async deleteStudentsEducationPrograms(id, value) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/curators/${id}`,
+        `http://localhost:3001/api/studentsPrograms/${id}`,
         {
           method: 'DELETE',
-          body: JSON.stringify({id}),
+          body: JSON.stringify({id, value}),
           headers: {
             'Content-Type': 'application/json'
           }
@@ -63,14 +48,14 @@ class Programs {
       throw new Error(e.message);
     }
   }
-
-  async updateCurator(id) {
+  
+  async updateStudentsEducationPrograms(id, value) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/curators/${id}`,
+        `http://localhost:3001/api/studentsPrograms/${id}`,
         {
           method: 'PUT',
-          body: JSON.stringify({id}),
+          body: JSON.stringify({id, value}),
           headers: {
             'Content-Type': 'application/json'
           }
@@ -80,7 +65,7 @@ class Programs {
       throw new Error(e.message);
     }
   }
-
+  
 }
 
 export default new Programs();

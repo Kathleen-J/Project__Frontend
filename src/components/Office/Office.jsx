@@ -3,12 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import css from './Office.module.css';
 import SideBar from "./SideBar/SideBar";
 import Profile from "./Content/Profile/Profile";
-import Students from './Content/AdminPage/Students/Students';
-import Curators from './Content/AdminPage/Curators/Curators';
 import Loading from '../Loading/Loading';
+import NotFound from '../NotFound/NotFound';
 const EditPrograms = React.lazy(() => import('./Content/AdminPage/EditPrograms/EditPrograms'));
-// const Students = React.lazy(() => import('./Content/AdminPage/Students/Students'));
-// const Curators = React.lazy(() => import('./Content/AdminPage/Curators/Curators'));
+const Students = React.lazy(() => import('./Content/AdminPage/Students/Students'));
+const Curators = React.lazy(() => import('./Content/AdminPage/Curators/Curators'));
 // const Profile = React.lazy(() => import('./Content/Profile/Profile'));
 
 
@@ -19,18 +18,20 @@ const Office = () => {
           <Routes>
 
             {/* all users*/}
-            <Route path="/" element={<Profile />} />
+            <Route exact='true' path="/profile" element={<Profile />} />
 
             {/* students */}
             {/* <Route path={"/my-programs"} element={<MyPrograms />} /> */}
 
             {/* admin */}
-            <Route path={"/students"} element={<Students />} />
+            <Route path="/students" element={<Suspense fallback={<Loading />}> <Students /> </Suspense>}/>
             <Route path="/edit-programs" element={<Suspense fallback={<Loading />}> <EditPrograms /> </Suspense>}/>
-            <Route path={"/curators"} element={<Curators />} />
+            <Route path="/curators" element={<Suspense fallback={<Loading />}> <Curators /> </Suspense>}/>
 
             {/* curator */}
             {/* <Route path={"/my-students"} element={<MyStudents />} /> */}
+
+            <Route path="*" element={<NotFound />} />
 
           </Routes>
         </div>

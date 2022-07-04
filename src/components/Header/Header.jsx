@@ -32,7 +32,7 @@ const Header = () => {
     <Link to="/programs" className={css.choose__program} onClick={() => {window.scrollTo(0, 0)}}>
       ВЫБРАТЬ ПРОГРАММУ
     </Link>
-    <Link to="/office" className={css.to_profile} onClick={() => {window.scrollTo(0, 0)}}>
+    <Link to="/office/profile" className={css.to_profile} onClick={() => {window.scrollTo(0, 0)}}>
       ЛИЧНЫЙ КАБИНЕТ
     </Link>
       <button className={css.singOut}>

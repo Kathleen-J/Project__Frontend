@@ -13,6 +13,10 @@ body {
   font-family: 'Montserrat';
 }
 
+.active {
+  background-color: #21c0a615;
+}
+
 .collapse {
   height: 0;
   overflow: hidden;

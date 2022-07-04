@@ -6,11 +6,14 @@ import programsStore from "../../../../../store/programsStore";
 const EditPrograms = observer(() => {
 
     useEffect(() => {
-        if (!programsStore.allprograms.length) {
-            programsStore.getAllPrograms();
-  
-        }
-    }, []);
+        (async() => {
+    
+          if(!programsStore.allprograms.length) {
+            await programsStore.getAllPrograms();
+          }
+          
+        })();
+      }, [programsStore.isFinishedDelete, programsStore.isFinishedUpdate]);
 
     const allPrograms = programsStore.allprograms.map((program) => 
         <div className={css.card} key={program.id} id={program.id}>
@@ -34,7 +37,28 @@ const EditPrograms = observer(() => {
                     </tr>
                 </tbody>
             </table>
-            <button className={`${css.status} ${program.status === 'active' ? css.status__active : css.status__deleted}`} value={program.status === 'active' ? 'status__active' : 'status__deleted'} id={program.id} onClick={(event) => {if(event.target.value === 'status__active') {programsStore.deleteProgram(event.target.id)} else if(event.target.value === 'status__deleted'){programsStore.updateProgram(event.target.id)}}}>{program.status === 'active' ? 'Заблокировать' : 'Разблокировать'}</button>
+            <button 
+                className={`${css.status} ${program.status === 'active' ? css.status__active : css.status__deleted}`} 
+                value={program.status === 'active' ? 'status__active' : 'status__deleted'} 
+                id={program.id} 
+                onClick={(event) => {
+                    if(event.target.value === 'status__active') 
+                        {
+                            programsStore.deleteProgram(event.target.id)
+                            programsStore.changeIsFinishedDelete()
+                            programsStore.getAllPrograms();
+                            programsStore.getPrograms()
+                        } 
+                    else if(event.target.value === 'status__deleted')
+                        {
+                            programsStore.updateProgram(event.target.id)
+                            programsStore.changeIsFinishedUpdate()
+                            programsStore.getAllPrograms();
+                            programsStore.getPrograms()
+                        }}}
+            >
+                {program.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
+            </button>
         </div> 
     )
 

@@ -7,15 +7,20 @@ import { Link } from "react-router-dom";
 const AllPrograms = observer((props) => {
 
   useEffect(() => {
+    (async() => {
+
       if (!programs.areas.length) {
-        programs.getAreas();
+        await programs.getAreas();
 
       }
+      
       if (!programs.programs.length) {
-         programs.getPrograms();
+        await programs.getPrograms();
 
       }
-  }, []);
+      
+    })();
+  }, [programs.isFinishedDelete , programs.isFinishedUpdate]);
 
   const result = programs.areas.map( (area) =>
     <div className={css.program_block} key={area.id} id={area.id}>

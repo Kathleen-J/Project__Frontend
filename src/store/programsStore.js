@@ -5,9 +5,19 @@ class Programs {
   programs = [];
   program = [];
   allprograms = [];
+  isFinishedDelete = false;
+  isFinishedUpdate = false;
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  changeIsFinishedDelete() {
+    this.isFinishedDelete = !this.isFinishedDelete
+  }
+
+  changeIsFinishedUpdate() {
+    this.isFinishedUpdate = !this.isFinishedUpdate
   }
 
   async getAreas() {
@@ -60,10 +70,10 @@ class Programs {
       const response = await fetch(
         "http://localhost:3001/api/programs?status=all"
       );
-      const programs = await response.json();
+      const programs_result = await response.json();
 
       runInAction(() => {
-        this.allprograms = [...programs];
+        this.allprograms = [...programs_result];
       });
     } catch (e) {
       throw new Error(e.message);

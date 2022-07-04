@@ -9,8 +9,14 @@ const Program = observer((props) => {
     const {id} = useParams();
 
     useEffect(() => {
-        programsStore.getProgram(id);
-      }, [id]);
+    (async() => {
+
+        if(!programsStore.program.length) {
+            await programsStore.getProgram(id);
+        }
+        
+    })();
+    }, [id]);
       
       
     const programTitle = programsStore.program.map((program) => (        

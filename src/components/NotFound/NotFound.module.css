@@ -1,0 +1,19 @@
+.img {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 25vh;
+}
+
+.notFound {
+    width: 100vh;
+}
+
+.main {    
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    padding-top: 80px;
+    font-size: 25px;
+}

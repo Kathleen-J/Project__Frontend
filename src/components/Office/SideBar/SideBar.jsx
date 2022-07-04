@@ -1,5 +1,5 @@
 import css from "./SideBar.module.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -7,16 +7,16 @@ const SideBar = () => {
       <div className={css.nav}>
 
         {/* all users */}
-        <Link to="/office" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Профиль</Link>
-        <Link to="/office/my-programs" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Мои программы</Link>
+        <NavLink to="/office/profile" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Профиль</NavLink>
+        <NavLink to="/office/my-programs" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Мои программы</NavLink>
 
         {/* curator */}
-        <Link to="/office/my-students" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Мои студенты</Link>
+        <NavLink to="/office/my-students" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Мои студенты</NavLink>
 
         {/* admin */}
-        <Link to="/office/students" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Студенты</Link>
-        <Link to="/office/curators" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Кураторы</Link>
-        <Link to="/office/edit-programs" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Все программы</Link>
+        <NavLink to="/office/students" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Студенты</NavLink>
+        <NavLink to="/office/curators" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Кураторы</NavLink>
+        <NavLink to="/office/edit-programs" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Все программы</NavLink>
       </div>
     </div>
   );

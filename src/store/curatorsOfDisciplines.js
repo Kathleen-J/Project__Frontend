@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 
 class Programs {
-  curators = [];
+  curators_of_disciplines = [];
   isFinishedDelete = false;
   isFinishedUpdate = false;
 
@@ -17,40 +17,25 @@ class Programs {
     this.isFinishedUpdate = !this.isFinishedUpdate
   }
 
-  async getCurators() {
+  async getCuratorsOfDisciplines() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/curators"
+        "http://localhost:3001/api/curatorsDisciplines"
       );
-      const curators_response = await response.json();
+      const curators_of_disciplines_response = await response.json();
 
       runInAction(() => {
-        this.curators = [...curators_response];
+        this.curators_of_disciplines = [...curators_of_disciplines_response];
       });
     } catch (e) {
       throw new Error(e.message);
     }
   }
 
-//   async getProgram(id) {
-//     try {
-//       const response = await fetch(
-//         `http://localhost:3001/api/programs/${id}`
-//       );
-//       const program_result = await response.json();
-
-//       runInAction(() => {
-//         this.program = [program_result];
-//       });
-//     } catch (e) {
-//       throw new Error(e.message);
-//     }
-//   }
-
-  async deleteCurator(id) {
+  async deleteCuratorsDiscipline(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/curators/${id}`,
+        `http://localhost:3001/api/curatorsDisciplines/${id}`,
         {
           method: 'DELETE',
           body: JSON.stringify({id}),
@@ -64,10 +49,10 @@ class Programs {
     }
   }
 
-  async updateCurator(id) {
+  async updateCuratorsDiscipline(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/curators/${id}`,
+        `http://localhost:3001/api/curatorsDisciplines/${id}`,
         {
           method: 'PUT',
           body: JSON.stringify({id}),

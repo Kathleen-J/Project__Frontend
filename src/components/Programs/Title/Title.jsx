@@ -12,7 +12,7 @@ const Title = observer((props) => {
 
       }
     })();
-  }, []);
+  }, [programs.areas]);
 
 
   return (

@@ -7,6 +7,7 @@ import Login from "./components/LoginSignup/Login/Login";
 import Signup from "./components/LoginSignup/Signup/Signup";
 import Loading from "./components/Loading/Loading";
 import Office from "./components/Office/Office";
+import NotFound from "./components/NotFound/NotFound";
 const Programs = React.lazy(() => import("./components/Programs/Programs"));
 const Program = React.lazy(() => import("./components/Programs/Program/Program"));
 
@@ -31,6 +32,7 @@ const App = (props) => {
           <Route path="/office/*" element={<Office />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Signup />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
   );
