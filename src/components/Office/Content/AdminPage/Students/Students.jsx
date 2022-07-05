@@ -2,7 +2,7 @@ import css from "./Students.module.css";
 import {Accordion} from 'react-bootstrap';
 import students from "../../../../../store/usersStore";
 import studentsPrograms from "../../../../../store/studentsPrograms";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 
@@ -10,6 +10,7 @@ const Students = observer(() => {
 
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
+  let [statusBtn, changeStatusBtn] = useState(true);
 
   useEffect(() => {
     (async() => {
@@ -168,7 +169,10 @@ const Students = observer(() => {
                     <thead>
                         <tr className={css.title_block}>
                             <th className={css.p_title}>Программа</th>
+                            <th className={css.p_title}>Дата приобретения</th>
                             <th className={css.p_title}>Тестирование</th>
+                            <th className={css.p_title}>Дата сдачи теста</th>
+                            <th className={css.p_title}>Дата изменения</th>
                             <th className={css.p_title}>Статус обучения</th>
                             <th className={css.p_title}>Доступ</th>
                         </tr>
@@ -180,54 +184,57 @@ const Students = observer(() => {
                             <tbody key={program.id}>
                                 <tr className={css.program_cells}>
                                     <td className={css.p_cell}>{program.discipline + ': ' + program.profile}</td>
+                                    <td className={css.p_cell}>{program.purchase_date ? new Date(program.purchase_date).toDateString().slice(4) : '-'}</td>
                                     <td className={css.p_cell}>{program.test_results ? program.test_results : '-'}</td>
+                                    <td className={css.p_cell}>{program.test_finished_at ? new Date(program.test_finished_at).toDateString().slice(4) : '-'}</td>
+                                    <td className={css.p_cell}>{program.status_updated_at ? new Date(program.status_updated_at).toDateString().slice(4) : '-'}</td>
                                     <td className={css.p_cell}>
                                       <button 
-                                              className={`${css.status} ${program.status_education === 'unfinished' ? css.status__active : css.status__deleted}`} 
-                                              value={program.status_education === 'unfinished' ? 'unfinished' : 'finished'} 
-                                              id={program.id}
-                                              onClick={(e) => 
-                                                {if(e.target.value === 'unfinished') 
-                                                  {
-                                                    studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                                    studentsPrograms.changeStatusProgram()
-                                                    studentsPrograms.getStudentsPrograms()
-                                                  } 
-                                                else if (e.target.value === 'finished') 
-                                                  {
-                                                    studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                                    studentsPrograms.changeStatusProgram()
-                                                    studentsPrograms.getStudentsPrograms()
-                                                  }
-                                                }
-                                              }
-                                            >
-                                            {program.status_education === 'unfinished' ? 'Завершить' : 'Отменить завершение'}
-                                          </button>
-                                    </td>
-                                    <td className={css.p_cell}>                            
-                                          <button 
-                                            className={`${css.status} ${program.status_program === 'active' ? css.status__active : css.status__deleted}`} 
-                                            value={program.status_program === 'active' ? 'active' : 'deleted'} 
-                                            id={program.id}
-                                            onClick={(e) => 
-                                              {if(e.target.value === 'active') 
-                                                {
-                                                  studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                                  studentsPrograms.changeStatusProgram()
-                                                  studentsPrograms.getStudentsPrograms()
-                                                } 
-                                              else if (e.target.value === 'deleted') 
-                                                {
-                                                  studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                                  studentsPrograms.changeStatusProgram()
-                                                  studentsPrograms.getStudentsPrograms()
-                                                }
+                                          className={`${css.status} ${program.status_education === 'unfinished' ? css.status__active : css.status__deleted}`} 
+                                          value={program.status_education === 'unfinished' ? 'unfinished' : 'finished'} 
+                                          id={program.id}
+                                          onClick={(e) => 
+                                            {if(e.target.value === 'unfinished') 
+                                              {
+                                                studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
+                                                studentsPrograms.changeStatusProgram()
+                                                studentsPrograms.getStudentsPrograms()
+                                              } 
+                                            else if (e.target.value === 'finished') 
+                                              {
+                                                studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
+                                                studentsPrograms.changeStatusProgram()
+                                                studentsPrograms.getStudentsPrograms()
                                               }
                                             }
-                                          >
-                                          {program.status_program === 'active' ? 'Заблокировать' : 'Разблокировать'}
-                                        </button>
+                                          }
+                                        >
+                                        {program.status_education === 'unfinished' ? 'Завершить' : 'Отменить завершение'}
+                                      </button>
+                                    </td>
+                                    <td className={css.p_cell}>                            
+                                      <button 
+                                        className={`${css.status} ${program.status_program === 'active' ? css.status__active : css.status__deleted}`} 
+                                        value={program.status_program === 'active' ? 'active' : 'deleted'} 
+                                        id={program.id}
+                                        onClick={(e) => 
+                                          {if(e.target.value === 'active') 
+                                            {
+                                              studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
+                                              studentsPrograms.changeStatusProgram()
+                                              studentsPrograms.getStudentsPrograms()
+                                            } 
+                                          else if (e.target.value === 'deleted') 
+                                            {
+                                              studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
+                                              studentsPrograms.changeStatusProgram()
+                                              studentsPrograms.getStudentsPrograms()
+                                            }
+                                          }
+                                        }
+                                      >
+                                        {program.status_program === 'active' ? 'Заблокировать' : 'Разблокировать'}
+                                      </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -245,6 +252,51 @@ const Students = observer(() => {
 
   return (
     <div className={css.wrapper}>
+
+      <div className={`${css.createBtn} ${statusBtn ? '' : css.closed}`} onClick={() => changeStatusBtn(prevState => !prevState)}>Создать нового студента</div>
+      
+      <div className={`${css.card} ${!statusBtn ? css.create_card : css.closed}`}>
+        <div className={`${css.status} ${css.status__active}`} onClick={() => changeStatusBtn(prevState => !prevState)}>X</div>
+        <input 
+          ref={loginInput}
+          className={`${css.input} ${css.create_el}`} 
+          type="text" 
+          placeholder="введите логин" 
+          value={students.loginValue}
+          onChange={(e) => 
+            {
+              students.setLoginValue(e.target.value);
+            }
+          }
+        />
+        <input 
+          ref={passwordInput}
+          className={`${css.input} ${css.create_el}`} 
+          type="text" 
+          placeholder="введите пароль" 
+          value={students.passwordValue}
+          onChange={(e) => 
+            {
+              students.setPasswordValue(e.target.value);
+            }
+          }
+        />
+        <button
+          value='student'
+          className={`${css.btn} ${css.create_el}`}
+          onClick={(e) => 
+            {
+              students.createUser(e.target.value, loginInput.current.value, passwordInput.current.value);
+              students.cleanLoginValue();
+              students.cleanPasswordValue();
+              students.changestatusStudent()
+              students.getStudents()
+            }
+          }
+        >
+          Создать студента
+        </button>
+      </div>
 
       <Accordion>        
           {card}

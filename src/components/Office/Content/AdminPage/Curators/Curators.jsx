@@ -2,7 +2,7 @@ import css from "./Curators.module.css";
 import {Accordion} from 'react-bootstrap';
 import curators from "../../../../../store/usersStore";
 import curatorsOfDisciplines from "../../../../../store/curatorsDisciplinesStore"; 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 
@@ -10,6 +10,7 @@ const Curators = observer(() => {
 
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
+  let [statusBtn, changeStatusBtn] = useState(true);
 
   useEffect(() => {
     (async() => {
@@ -196,6 +197,51 @@ const Curators = observer(() => {
   return (
     <div className={css.wrapper}>
       
+      <div className={`${css.createBtn} ${statusBtn ? '' : css.closed}`} onClick={() => changeStatusBtn(prevState => !prevState)}>Создать нового куратора</div>
+      
+      <div className={`${css.card} ${!statusBtn ? css.create_card : css.closed}`}>
+        <div className={`${css.status} ${css.status__active}`} onClick={() => changeStatusBtn(prevState => !prevState)}>X</div>
+        <input 
+          ref={loginInput}
+          className={`${css.input} ${css.create_el}`} 
+          type="text" 
+          placeholder="введите логин" 
+          value={curators.loginValue}
+          onChange={(e) => 
+            {
+              curators.setLoginValue(e.target.value);
+            }
+          }
+        />
+        <input 
+          ref={passwordInput}
+          className={`${css.input} ${css.create_el}`} 
+          type="text" 
+          placeholder="введите пароль" 
+          value={curators.passwordValue}
+          onChange={(e) => 
+            {
+              curators.setPasswordValue(e.target.value);
+            }
+          }
+        />
+        <button
+          value='curator'
+          className={`${css.btn} ${css.create_el}`}
+          onClick={(e) => 
+            {
+              curators.createUser(e.target.value, loginInput.current.value, passwordInput.current.value);
+              curators.cleanLoginValue();
+              curators.cleanPasswordValue();
+              curators.changestatusCurator()
+              curators.getCurators()
+            }
+          }
+        >
+          Создать куратора
+        </button>
+      </div>
+
       <Accordion>
         {card}
       </Accordion>

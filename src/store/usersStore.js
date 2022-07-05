@@ -5,7 +5,7 @@ class Users {
   curators = [];
   statusStudent = false;
   statusCurator = false;
-  status = null;
+  // status = null;
   loginValue = '';
   passwordValue = '';
 
@@ -13,6 +13,7 @@ class Users {
     makeAutoObservable(this);
   }
 
+  //update data on page on put/post/delete requests
   changestatusStudent() {
     this.statusStudent = !this.statusStudent
   }
@@ -21,6 +22,7 @@ class Users {
     this.statusCurator = !this.statusCurator
   }
 
+  //state of inputs
   setLoginValue(value) {
     this.loginValue = value;
   }
@@ -37,10 +39,11 @@ class Users {
     this.passwordValue = '';
   }
 
-  getStatus() {
+/*   getStatus() {
     return this.status;
-  }
-  
+  } */
+
+  //       GET  
   async getStudents() {
     try {
       const response = await fetch(
@@ -71,7 +74,26 @@ class Users {
       throw new Error(e.message);
     }
   }
+
+  //       POST
+  async createUser(role, login, password) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/users`,
+        {
+          method: 'POST',
+          body: JSON.stringify({role, login, password}),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
   
+  //      DELETE
   async deleteUser(id) {
     try {
       const response = await fetch(
@@ -89,6 +111,7 @@ class Users {
     }
   }
 
+  //       PUT
   async updateUser(id) {
     try {
       const response = await fetch(

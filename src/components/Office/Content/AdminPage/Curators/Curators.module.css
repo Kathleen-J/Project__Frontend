@@ -61,6 +61,7 @@
     font-family: "Montserrat";
     background-color: rgb(255, 174, 53);
     border: 1px solid rgb(255, 174, 53);
+    cursor: pointer;
   }
   
   .status__active {
@@ -95,9 +96,11 @@
     padding: 8px 80px 8px 15px;
     border: 1px solid gray;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 17px;
+    font-weight: 550;
     font-family: 'Montserrat';
     margin-right: 20px;
+    color: #56c7ab;
   }
   
   .input::placeholder {
@@ -144,4 +147,51 @@
   .p_cell {
       padding: 20px 10px;
       border-bottom: 1px solid gray;
+  }
+
+  .create_block {
+    margin-top: 20px;
+  }
+
+  .create {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .closed {
+    display: none;
+  }
+  .createBtn {
+    margin: 25px 40px;
+    cursor: pointer;
+    color: white;
+    width: max-content;
+    padding: 5px;
+    font-size: 17px;
+    background-color: rgb(255, 174, 53);
+    border: 1px solid rgb(255, 174, 53);
+  }
+
+  .create_card {
+    margin: 70px 180px 80px 180px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #a5e8d7;
+  }
+
+  .create_card .input {
+    margin-right: 60%;
+  }
+
+  .create_card .status {
+    margin-left: 95%;
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 10px;
+  }
+
+  .create_el {
+    margin-bottom: 30px;
+    margin-left: 10px;
   }
