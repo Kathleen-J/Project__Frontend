@@ -8,7 +8,7 @@ class Programs {
   isFinishedDelete = false;
   isFinishedUpdate = false;
 
-  constructor() {
+  constructor(areas, programs, program, allprograms, isFinishedDelete, isFinishedUpdate) {
     makeAutoObservable(this);
   }
 

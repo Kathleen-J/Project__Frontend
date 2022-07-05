@@ -1,26 +1,27 @@
 import css from "./AllPrograms.module.css";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import programs from "../../../store/programsStore";
 import { Link } from "react-router-dom";
+import NotFound from '../../NotFound/NotFound';
 
 const AllPrograms = observer((props) => {
+
+  const [isActiveCard, setStateCard] = useState(true);
 
   useEffect(() => {
     (async() => {
 
-      if (!programs.areas.length) {
-        await programs.getAreas();
-
+      try {
+        await programs.getAreas();   
+        await programs.getPrograms();             
+      } catch (error) {
+          setStateCard(false);
       }
-      
-      if (!programs.programs.length) {
-        await programs.getPrograms();
 
-      }
       
     })();
-  }, [programs.isFinishedDelete , programs.isFinishedUpdate]);
+  }, [programs.isFinishedDelete, programs.isFinishedUpdate]);
 
   const result = programs.areas.map( (area) =>
     <div className={css.program_block} key={area.id} id={area.id}>
@@ -50,8 +51,17 @@ const AllPrograms = observer((props) => {
   )
 
   return (
-    <div className={css.all_programs}>
-      {result}      
+    <div>
+      {
+        isActiveCard ?
+          <div className={css.all_programs}>
+            {result}      
+          </div>
+        :
+          <div>
+            <NotFound />
+          </div>
+      }
     </div>
   );
 });

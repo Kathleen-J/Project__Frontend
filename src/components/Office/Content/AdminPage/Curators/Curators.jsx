@@ -1,6 +1,6 @@
 import css from "./Curators.module.css";
 import {Accordion} from 'react-bootstrap';
-import curatorsStore from "../../../../../store/curatorsStore";
+import curators from "../../../../../store/users";
 import curatorsOfDisciplines from "../../../../../store/curatorsOfDisciplines"; 
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
@@ -11,8 +11,8 @@ const Curators = observer(() => {
   useEffect(() => {
     (async() => {
 
-      if(!curatorsStore.getCurators.length) {
-        await curatorsStore.getCurators();
+      if(!curators.getCurators.length) {
+        await curators.getCurators();
       }
   
       if(!curatorsOfDisciplines.getCuratorsOfDisciplines.length) {
@@ -20,9 +20,9 @@ const Curators = observer(() => {
       }
       
     })();
-  }, [curatorsStore.isFinishedDelete, curatorsStore.isFinishedUpdate, curatorsOfDisciplines.isFinishedDelete, curatorsOfDisciplines.isFinishedUpdate]);
+  }, [curators.statusCurator, curatorsOfDisciplines.statusDiscipline]);
 
-  const card = curatorsStore.curators.map((curator) => 
+  const card = curators.curators.map((curator) => 
     <div className={css.card} key={curator.id}>
       <Accordion.Item eventKey={curator.id} >
         <table className={css.table}>
@@ -45,15 +45,15 @@ const Curators = observer(() => {
                     onClick={(e) => 
                       {if(e.target.value === 'status__active') 
                         {
-                          curatorsStore.deleteCurator(e.target.id)
-                          curatorsStore.changeIsFinishedDelete()
-                          curatorsStore.getCurators()
+                          curators.deleteUser(e.target.id)
+                          curators.changestatusCurator()
+                          curators.getCurators()
                         } 
                       else if (e.target.value === 'status__deleted') 
                         {
-                          curatorsStore.updateCurator(e.target.id)
-                          curatorsStore.changeIsFinishedUpdate()
-                          curatorsStore.getCurators()
+                          curators.updateUser(e.target.id)
+                          curators.changestatusCurator()
+                          curators.getCurators()
                         }}}>
                   {curator.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
                 </button>
@@ -114,13 +114,13 @@ const Curators = observer(() => {
                                               {if(e.target.value === 'status__active') 
                                                 {
                                                   curatorsOfDisciplines.deleteCuratorsDiscipline(e.target.id)
-                                                  curatorsOfDisciplines.changeIsFinishedDelete()
+                                                  curatorsOfDisciplines.changeStatusDiscipline()
                                                   curatorsOfDisciplines.getCuratorsOfDisciplines()
                                                 } 
                                               else if (e.target.value === 'status__deleted') 
                                                 {
                                                   curatorsOfDisciplines.updateCuratorsDiscipline(e.target.id)
-                                                  curatorsOfDisciplines.changeIsFinishedUpdate()
+                                                  curatorsOfDisciplines.changeStatusDiscipline()
                                                   curatorsOfDisciplines.getCuratorsOfDisciplines()
                                                 }}}
                                           >

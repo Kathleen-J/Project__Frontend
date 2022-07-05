@@ -2,21 +2,16 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 class Programs {
   curators_of_disciplines = [];
-  isFinishedDelete = false;
-  isFinishedUpdate = false;
+  statusDiscipline = false;
 
-  constructor() {
+  constructor(curators_of_disciplines, statusDiscipline) {
     makeAutoObservable(this);
   }
 
-  changeIsFinishedDelete() {
-    this.isFinishedDelete = !this.isFinishedDelete
+  changeStatusDiscipline() {
+    this.statusDiscipline = !this.statusDiscipline
   }
-
-  changeIsFinishedUpdate() {
-    this.isFinishedUpdate = !this.isFinishedUpdate
-  }
-
+  
   async getCuratorsOfDisciplines() {
     try {
       const response = await fetch(

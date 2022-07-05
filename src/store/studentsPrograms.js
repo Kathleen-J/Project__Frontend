@@ -2,19 +2,14 @@ import { makeAutoObservable, runInAction } from "mobx";
 
 class Programs {
   students_programs = [];
-  isFinishedDelete = false;
-  isFinishedUpdate = false;
+  statusProgram = false;
 
-  constructor() {
+  constructor(students_programs, statusProgram) {
     makeAutoObservable(this);
   }
 
-  changeIsFinishedDelete() {
-    this.isFinishedDelete = !this.isFinishedDelete
-  }
-
-  changeIsFinishedUpdate() {
-    this.isFinishedUpdate = !this.isFinishedUpdate
+  changeStatusProgram() {
+    this.statusProgram = !this.statusProgram
   }
 
   async getStudentsPrograms() {

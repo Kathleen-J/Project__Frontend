@@ -1,6 +1,6 @@
 import css from "./Students.module.css";
 import {Accordion} from 'react-bootstrap';
-import studentsStore from "../../../../../store/studentsStore";
+import students from "../../../../../store/users";
 import studentsPrograms from "../../../../../store/studentsPrograms";
 import { useEffect } from "react";
 import { observer } from "mobx-react-lite";
@@ -12,8 +12,8 @@ const Students = observer(() => {
     (async() => {
 
       try {
-        if(!studentsStore.getStudents.length) {
-          await studentsStore.getStudents();
+        if(!students.getStudents.length) {
+          await students.getStudents();
         }        
         
         if(!studentsPrograms.getStudentsPrograms.length) {
@@ -43,9 +43,9 @@ const Students = observer(() => {
       }
 
     })();
-  }, [studentsStore.isFinishedDelete, studentsStore.isFinishedUpdate, studentsPrograms.isFinishedDelete, studentsPrograms.isFinishedUpdate]);
+  }, [students.statusStudent, studentsPrograms.statusProgram]);
 
-  const card = studentsStore.students.map((student) => 
+  const card = students.students.map((student) => 
     <div className={css.card} key={student.id}>
       <Accordion.Item eventKey={student.id} >
         <table className={css.table}>
@@ -67,14 +67,14 @@ const Students = observer(() => {
                       id={student.id}
                       onClick={(e) => 
                         {if(e.target.value === 'status__active') {
-                          studentsStore.deleteStudent(e.target.id) 
-                          studentsStore.changeIsFinishedDelete()
-                          studentsStore.getStudents();
+                          students.deleteUser(e.target.id) 
+                          students.changestatusStudent()
+                          students.getStudents();
                         }
                         else if (e.target.value === 'status__deleted') {
-                          studentsStore.updateStudent(e.target.id)
-                          studentsStore.changeIsFinishedUpdate()
-                          studentsStore.getStudents();
+                          students.updateUser(e.target.id)
+                          students.changestatusStudent()
+                          students.getStudents();
                         }}}>
                     {student.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
                   </button>
@@ -137,13 +137,13 @@ const Students = observer(() => {
                                                 {if(e.target.value === 'unfinished') 
                                                   {
                                                     studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                                    studentsPrograms.changeIsFinishedDelete()
+                                                    studentsPrograms.changeStatusProgram()
                                                     studentsPrograms.getStudentsPrograms()
                                                   } 
                                                 else if (e.target.value === 'finished') 
                                                   {
                                                     studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                                    studentsPrograms.changeIsFinishedUpdate()
+                                                    studentsPrograms.changeStatusProgram()
                                                     studentsPrograms.getStudentsPrograms()
                                                   }
                                                 }
@@ -161,13 +161,13 @@ const Students = observer(() => {
                                               {if(e.target.value === 'active') 
                                                 {
                                                   studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                                  studentsPrograms.changeIsFinishedDelete()
+                                                  studentsPrograms.changeStatusProgram()
                                                   studentsPrograms.getStudentsPrograms()
                                                 } 
                                               else if (e.target.value === 'deleted') 
                                                 {
                                                   studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                                  studentsPrograms.changeIsFinishedUpdate()
+                                                  studentsPrograms.changeStatusProgram()
                                                   studentsPrograms.getStudentsPrograms()
                                                 }
                                               }
