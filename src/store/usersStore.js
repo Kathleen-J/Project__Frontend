@@ -6,8 +6,10 @@ class Users {
   statusStudent = false;
   statusCurator = false;
   status = null;
+  loginValue = '';
+  passwordValue = '';
 
-  constructor(students, curators, statusStudent, statusCurator) {
+  constructor(students, curators, statusStudent, statusCurator, loginValue, passwordValue) {
     makeAutoObservable(this);
   }
 
@@ -17,6 +19,22 @@ class Users {
 
   changestatusCurator() {
     this.statusCurator = !this.statusCurator
+  }
+
+  setLoginValue(value) {
+    this.loginValue = value;
+  }
+  
+  cleanLoginValue() {
+    this.loginValue = '';
+  }
+
+  setPasswordValue(value) {
+    this.passwordValue = value;
+  }
+  
+  cleanPasswordValue() {
+    this.passwordValue = '';
   }
 
   getStatus() {

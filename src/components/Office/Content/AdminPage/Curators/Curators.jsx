@@ -1,12 +1,15 @@
 import css from "./Curators.module.css";
 import {Accordion} from 'react-bootstrap';
-import curators from "../../../../../store/users";
-import curatorsOfDisciplines from "../../../../../store/curatorsOfDisciplines"; 
-import { useEffect } from "react";
+import curators from "../../../../../store/usersStore";
+import curatorsOfDisciplines from "../../../../../store/curatorsDisciplinesStore"; 
+import React, { useEffect } from "react";
 import { observer } from "mobx-react-lite";
 
 
 const Curators = observer(() => {
+
+  let loginInput = React.createRef();
+  let passwordInput = React.createRef();
 
   useEffect(() => {
     (async() => {
@@ -68,23 +71,73 @@ const Curators = observer(() => {
         </Accordion.Header>
         <Accordion.Body>
           <div className={css.options}>
+
             <div className={css.change_block}>
                 <div className={css.change_login}>                
                     <div>изменить логин</div>   
                     <div>
-                        <input className={css.input} type="text" placeholder="введите новый логин" />
-                        <button className={css.btn}>Подтвердить</button>
+                        <input 
+                          ref={loginInput}
+                          className={css.input} 
+                          type="text" 
+                          placeholder="введите новый логин" 
+                          value={curators.loginValue}
+                          onChange={(e) => 
+                            {
+                              curators.setLoginValue(e.target.value);
+                            }
+                          }
+                        />
+
+                        <button 
+                          id={curator.id}
+                          className={css.btn}
+                          onClick={(e) => 
+                            {
+                              curators.updateUserLogin(e.target.id, loginInput.current.value);
+                              curators.cleanLoginValue();
+                              curators.changestatusCurator()
+                              curators.getCurators()
+                            }
+                          }
+                        >
+                          Подтвердить
+                        </button>
                     </div>               
                 </div>
             </div>
             <div className={css.change_block}>
-                <div className={css.change_password}>                
-                    <div>изменить пароль</div>   
+              <div className={css.change_password}>                
+                  <div>изменить пароль</div>   
                     <div>
-                        <input className={css.input} type="text" placeholder="введите новый пароль" />
-                        <button className={css.btn}>Подтвердить</button>
+                      <input 
+                        ref={passwordInput}
+                        className={css.input} 
+                        type="text" 
+                        placeholder="введите новый пароль" 
+                        value={curators.passwordValue}
+                        onChange={(e) => 
+                          {
+                            curators.setPasswordValue(e.target.value);
+                          }
+                        }
+                      />
+                      <button 
+                        id={curator.id}
+                        className={css.btn}
+                        onClick={(e) => 
+                          {
+                            curators.updateUserPassword(e.target.id, passwordInput.current.value);
+                            curators.cleanPasswordValue();
+                            curators.changestatusCurator()
+                            curators.getCurators()
+                          }
+                        }
+                      >
+                        Подтвердить
+                      </button>
                     </div>               
-                </div>
+              </div>
             </div>
 
             <div className={css.programs}>
@@ -133,6 +186,7 @@ const Curators = observer(() => {
                       }
                 </table>
             </div>
+            
           </div>
         </Accordion.Body>
       </Accordion.Item>
