@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { AuthStore } from "./authStore";
 
 class Users {
   students = [];
@@ -47,7 +48,13 @@ class Users {
   async getStudents() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/users/students"
+        "http://localhost:3001/api/users/students?status=all",
+        {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": 'application/json'
+          }
+        }
       );
       this.status = response.status;
       const students_response = await response.json();
@@ -63,7 +70,13 @@ class Users {
   async getCurators() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/users/curators"
+        "http://localhost:3001/api/users/curators?status=all",
+        {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": 'application/json'
+          }
+        }
       );
       const curators_response = await response.json();
 
@@ -84,6 +97,7 @@ class Users {
           method: 'POST',
           body: JSON.stringify({role, login, password}),
           headers: {
+            // "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }
@@ -102,6 +116,7 @@ class Users {
           method: 'DELETE',
           body: JSON.stringify({id}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }
@@ -120,6 +135,7 @@ class Users {
           method: 'PUT',
           body: JSON.stringify({id}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }
@@ -137,6 +153,7 @@ class Users {
           method: 'PUT',
           body: JSON.stringify({id, login}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }
@@ -154,6 +171,7 @@ class Users {
           method: 'PUT',
           body: JSON.stringify({id, password}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }

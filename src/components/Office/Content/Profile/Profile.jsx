@@ -1,6 +1,9 @@
+import { AuthStore } from "../../../../store/authStore";
 import css from "./Profile.module.css";
 
 const Profile = () => {
+    
+    console.log(AuthStore.loginUser);
   return (
     <div className={css.content_profile}>
         <div className={css.loginUser}>Welcome back, Login User!</div>

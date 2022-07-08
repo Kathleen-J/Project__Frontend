@@ -1,10 +1,12 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { AuthStore } from "./authStore";
 
 class Programs {
   students_programs = [];
   statusProgram = false;
+  students = [];
 
-  constructor(students_programs, statusProgram) {
+  constructor(students_programs, statusProgram, students) {
     makeAutoObservable(this);
   }
 
@@ -15,7 +17,13 @@ class Programs {
   async getStudentsPrograms() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/studentsPrograms"
+        "http://localhost:3001/api/studentsPrograms?status=all",
+         {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": 'application/json'
+          }
+         }
       );
       const students_programs_response = await response.json();
 
@@ -35,6 +43,7 @@ class Programs {
           method: 'DELETE',
           body: JSON.stringify({id, value}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }
@@ -52,6 +61,7 @@ class Programs {
           method: 'PUT',
           body: JSON.stringify({id, value}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }

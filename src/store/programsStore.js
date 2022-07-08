@@ -1,4 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { useContext } from "react";
+// import { MainStoreContext } from "./mainStore";
+import { AuthStore } from "./authStore";
+
+// const {AuthStore} = useContext(MainStoreContext);
 
 class Programs {
   areas = [];
@@ -68,11 +73,17 @@ class Programs {
   async getAllPrograms() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/programs?status=all"
+        "http://localhost:3001/api/programs/all/programs",
+        {          
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": 'application/json'
+          }
+        }
       );
       const programs_result = await response.json();
 
-      runInAction(() => {
+      runInAction(async () => {
         this.allprograms = [...programs_result];
       });
     } catch (e) {
@@ -88,6 +99,7 @@ class Programs {
           method: 'DELETE',
           body: JSON.stringify({id}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }
@@ -105,6 +117,7 @@ class Programs {
           method: 'PUT',
           body: JSON.stringify({id}),
           headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'
           }
         }

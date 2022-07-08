@@ -26,6 +26,8 @@
   font-size: 20px;
   cursor: pointer;
   border-color: #14eb4d;
+  text-decoration: none;
+  text-align: center;
 }
 
 .login::placeholder,
