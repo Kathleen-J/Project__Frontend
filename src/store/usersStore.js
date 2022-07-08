@@ -9,8 +9,9 @@ class Users {
   // status = null;
   loginValue = '';
   passwordValue = '';
+  myStudents = [];
 
-  constructor(students, curators, statusStudent, statusCurator, loginValue, passwordValue) {
+  constructor(students, curators, statusStudent, statusCurator, loginValue, passwordValue, myStudents) {
     makeAutoObservable(this);
   }
 
@@ -82,6 +83,27 @@ class Users {
 
       runInAction(() => {
         this.curators = [...curators_response];
+      });
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
+
+  async getMyStudents() {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/users/students",
+        {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Content-Type": 'application/json'
+          }
+        }
+      );
+      const students_response = await response.json();
+
+      runInAction(() => {
+        this.myStudents = [...students_response];
       });
     } catch (e) {
       throw new Error(e.message);

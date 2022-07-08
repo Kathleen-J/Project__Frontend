@@ -1,0 +1,63 @@
+.wrapper {
+    padding: 100px 0;
+    background-color: #3fceaa;
+    background-color: white;
+    background-color: rgb(241, 241, 241);
+    min-height: 100vh;
+    color: rgb(251, 251, 251);
+    color: #2b2b2b;
+    font-size: 17px;
+  }
+  
+  .card {
+    border: 2px solid #535353;
+    box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
+    background-color: rgb(241, 241, 241);
+    background-color: #3fceaa;
+    background-color: #ffd44a87;
+    margin: 25px 40px;
+    padding: 13px;
+  }
+  
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .title {
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .cell {
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    padding: 10px;
+    width: 25%;
+    font-weight: 400;
+  }
+  
+  .title_left,
+  .cell_left {
+    border-left: 0px;
+  }
+  
+  .title_rigth,
+  .cell_right {
+    border-right: 0px;
+  }
+  
+  .status {
+    margin-top: 20px;
+    color: white;
+    width: max-content;
+    padding: 5px;
+    margin-left: 10px;
+    font-size: 17px;
+    font-family: "Montserrat";
+    background-color: #3fceaa;
+    border: 1px solid #3fceaa;
+    box-shadow: 0 1px 2px rgb(72, 72, 72, 0.151);
+  }

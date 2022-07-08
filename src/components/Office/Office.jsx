@@ -2,13 +2,14 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from "react-router-dom";
 import css from './Office.module.css';
 import SideBar from "./SideBar/SideBar";
-import Profile from "./Content/Profile/Profile";
 import Loading from '../Loading/Loading';
 import NotFound from '../NotFound/NotFound';
+import MyStudents from './Content/CuratorPage/MyStudents';
 const EditPrograms = React.lazy(() => import('./Content/AdminPage/EditPrograms/EditPrograms'));
 const Students = React.lazy(() => import('./Content/AdminPage/Students/Students'));
 const Curators = React.lazy(() => import('./Content/AdminPage/Curators/Curators'));
-// const Profile = React.lazy(() => import('./Content/Profile/Profile'));
+const MyPrograms = React.lazy(() => import('./Content/StudentPage/MyPrograms'));
+const Profile = React.lazy(() => import('./Content/Profile/Profile'));
 
 
 const Office = () => {
@@ -18,10 +19,10 @@ const Office = () => {
           <Routes>
 
             {/* all users*/}
-            <Route exact='true' path="/profile" element={<Profile />} />
+            <Route exact='true' path="/profile" element={<Suspense fallback={<Loading />}> <Profile /> </Suspense>} />
 
             {/* students */}
-            {/* <Route path={"/my-programs"} element={<MyPrograms />} /> */}
+            <Route path={"/my-programs"} element={<Suspense fallback={<Loading />}> <MyPrograms /> </Suspense>} />
 
             {/* admin */}
             <Route path="/students" element={<Suspense fallback={<Loading />}> <Students /> </Suspense>}/>
@@ -29,7 +30,7 @@ const Office = () => {
             <Route path="/curators" element={<Suspense fallback={<Loading />}> <Curators /> </Suspense>}/>
 
             {/* curator */}
-            {/* <Route path={"/my-students"} element={<MyStudents />} /> */}
+            <Route path={"/my-students"} element={<MyStudents />} />
 
             <Route path="*" element={<NotFound />} />
 
