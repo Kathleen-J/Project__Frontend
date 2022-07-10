@@ -5,7 +5,7 @@ const NotFound = () => {
     return (
         <div className={css.img}>
             <img src={require('./NotFound.png')} alt="Not Found" className={css.notFound}/>
-            <Link to='/' className={css.main}>На главную</Link>
+            <Link to='/' className={css.main} onClick={() => {window.scrollTo(0, 0)}}>На главную</Link>
         </div>
     )
 }

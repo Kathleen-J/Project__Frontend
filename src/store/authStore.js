@@ -1,9 +1,9 @@
-// import {action, computed, flow, makeAutoObservable, makeObservable, observable, reaction} from 'mobx';
 import {makeAutoObservable, reaction, runInAction} from 'mobx';
 
 export class AuthStore {
     token = localStorage.getItem('token');
-    user = '';
+    loginUser = '';
+    idUser = null;
 
     constructor(token) {
         makeAutoObservable(this)    
@@ -31,31 +31,30 @@ export class AuthStore {
                 body: JSON.stringify({login, password})
             }
         )
+        
         if(response.status > 400) {
             console.log('error');
             return;
-
         }
 
         const {token} = await response.json();
+        
         runInAction(() => {
-            // console.log(this.token);
             this.token = token;
-            this.user = login;
-          });
+        });
+    }
+
+    decodeData() {
+        const [, decodedPayload, ] = this.token.split('.');
+        const payload = JSON.parse(window.atob(decodedPayload));
+        this.loginUser = payload.login;
+        this.idUser = payload.id;
     }
     
-    async valueToken() {
-        return localStorage.getItem('token');
-    }
-
-    loginUser() {
-        return this.user;
-    }
-
     logOut() {
         this.token = null;
-        this.user = '';
+        this.loginUser = '';
+        this.idUser = null;
     }
 
     get isLoggedIn() {

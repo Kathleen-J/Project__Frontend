@@ -1,18 +1,25 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { AuthStore } from "./authStore";
 
-class Programs {
+export class studentsProgramsStore {
   students_programs = [];
   statusProgram = false;
   students = [];
   myPrograms = [];
 
-  constructor(students_programs, statusProgram, students, myPrograms) {
+  constructor(AuthStore) {
     makeAutoObservable(this);
+    this.AuthStore = AuthStore;
   }
 
   changeStatusProgram() {
     this.statusProgram = !this.statusProgram
+  }
+
+  cleanStore() {
+    this.students_programs = [];
+    this.statusProgram = false;
+    this.students = [];
+    this.myPrograms = [];
   }
 
   async getStudentsPrograms() {
@@ -21,7 +28,7 @@ class Programs {
         "http://localhost:3001/api/studentsPrograms?status=all",
          {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             "Content-Type": 'application/json'
           }
          }
@@ -42,7 +49,7 @@ class Programs {
         "http://localhost:3001/api/studentsPrograms",
          {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             "Content-Type": 'application/json'
           }
          }
@@ -65,7 +72,7 @@ class Programs {
           method: 'DELETE',
           body: JSON.stringify({id, value}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -83,7 +90,7 @@ class Programs {
           method: 'PUT',
           body: JSON.stringify({id, value}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -94,5 +101,3 @@ class Programs {
   }
   
 }
-
-export default new Programs();

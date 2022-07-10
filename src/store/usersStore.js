@@ -1,7 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { AuthStore } from "./authStore";
 
-class Users {
+export class UsersStore {
   students = [];
   curators = [];
   statusStudent = false;
@@ -11,8 +10,9 @@ class Users {
   passwordValue = '';
   myStudents = [];
 
-  constructor(students, curators, statusStudent, statusCurator, loginValue, passwordValue, myStudents) {
+  constructor(AuthStore) {
     makeAutoObservable(this);
+    this.AuthStore = AuthStore;
   }
 
   //update data on page on put/post/delete requests
@@ -41,6 +41,14 @@ class Users {
     this.passwordValue = '';
   }
 
+  cleanStore() {
+    this.students = [];
+    this.curators = [];
+    this.statusStudent = false;
+    this.statusCurator = false;
+    this.myStudents = [];
+  }
+
 /*   getStatus() {
     return this.status;
   } */
@@ -52,7 +60,7 @@ class Users {
         "http://localhost:3001/api/users/students?status=all",
         {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             "Content-Type": 'application/json'
           }
         }
@@ -74,7 +82,7 @@ class Users {
         "http://localhost:3001/api/users/curators?status=all",
         {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             "Content-Type": 'application/json'
           }
         }
@@ -95,7 +103,7 @@ class Users {
         "http://localhost:3001/api/users/students",
         {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             "Content-Type": 'application/json'
           }
         }
@@ -119,7 +127,7 @@ class Users {
           method: 'POST',
           body: JSON.stringify({role, login, password}),
           headers: {
-            // "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            // "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -138,7 +146,7 @@ class Users {
           method: 'DELETE',
           body: JSON.stringify({id}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -157,7 +165,7 @@ class Users {
           method: 'PUT',
           body: JSON.stringify({id}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -175,7 +183,7 @@ class Users {
           method: 'PUT',
           body: JSON.stringify({id, login}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -193,7 +201,7 @@ class Users {
           method: 'PUT',
           body: JSON.stringify({id, password}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -204,5 +212,3 @@ class Users {
   }
 
 }
-
-export default new Users();

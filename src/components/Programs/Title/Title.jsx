@@ -1,18 +1,21 @@
 import css from "./Title.module.css";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
-import programs from "../../../store/programsStore";
+import { useEffect, useContext } from "react";
+// import programs from "../../../store/programsStore";
+import {MainStoreContext} from "../../../store/mainStore";
 
 const Title = observer((props) => {
+  
+  const {AuthStore, ProgramsStore} = useContext(MainStoreContext);
 
   useEffect(() => {
     (async() => {
-      if (!programs.areas.length) {
-        await programs.getAreas();
+      if (!ProgramsStore.areas.length) {
+        await ProgramsStore.getAreas();
 
       }
     })();
-  }, [programs.areas]);
+  }, [ProgramsStore.areas]);
 
 
   return (
@@ -23,7 +26,7 @@ const Title = observer((props) => {
           <a className={css.area_btn} href="#?area=all">
             Все
           </a>
-          {programs.areas.map((area) => (
+          {ProgramsStore.areas.map((area) => (
             <a className={css.area_btn} href={`#?area=${area.id}`}  key={area.id} id={area.id}>
               {area.name}
             </a>

@@ -1,11 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { useContext } from "react";
-// import { MainStoreContext } from "./mainStore";
-import { AuthStore } from "./authStore";
 
-// const {AuthStore} = useContext(MainStoreContext);
-
-class Programs {
+export class ProgramsStore {
   areas = [];
   programs = [];
   program = [];
@@ -13,8 +8,9 @@ class Programs {
   isFinishedDelete = false;
   isFinishedUpdate = false;
 
-  constructor(areas, programs, program, allprograms, isFinishedDelete, isFinishedUpdate) {
+  constructor(AuthStore) {
     makeAutoObservable(this);
+    this.AuthStore = AuthStore;
   }
 
   changeIsFinishedDelete() {
@@ -23,6 +19,15 @@ class Programs {
 
   changeIsFinishedUpdate() {
     this.isFinishedUpdate = !this.isFinishedUpdate
+  }
+
+  cleanStore() {
+    this.areas = [];
+    this.programs = [];
+    this.program = [];
+    this.allprograms = [];
+    this.isFinishedDelete = false;
+    this.isFinishedUpdate = false;
   }
 
   async getAreas() {
@@ -76,7 +81,7 @@ class Programs {
         "http://localhost:3001/api/programs/all/programs",
         {          
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             "Content-Type": 'application/json'
           }
         }
@@ -99,7 +104,7 @@ class Programs {
           method: 'DELETE',
           body: JSON.stringify({id}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -117,7 +122,7 @@ class Programs {
           method: 'PUT',
           body: JSON.stringify({id}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -128,5 +133,3 @@ class Programs {
   }
 
 }
-
-export default new Programs();

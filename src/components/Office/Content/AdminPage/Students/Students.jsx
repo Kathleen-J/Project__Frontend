@@ -1,12 +1,15 @@
-import css from "./Students.module.css";
+import css from "../../Content.module.css";
 import {Accordion} from 'react-bootstrap';
-import students from "../../../../../store/usersStore";
-import studentsPrograms from "../../../../../store/studentsPrograms";
-import React, { useEffect, useState } from "react";
+// import students from "../../../../../store/usersStore";
+// import studentsPrograms from "../../../../../store/studentsProgramsStore";
+import {MainStoreContext} from "../../../../../store/mainStore";
+import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 
 
 const Students = observer(() => {
+
+  const {AuthStore, UsersStore, studentsProgramsStore} = useContext(MainStoreContext);
 
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
@@ -16,40 +19,22 @@ const Students = observer(() => {
     (async() => {
 
       try {
-        if(!students.getStudents.length) {
-          await students.getStudents();
+        if(!UsersStore.getStudents.length) {
+          await UsersStore.getStudents();
         }        
         
-        if(!studentsPrograms.getStudentsPrograms.length) {
-          await studentsPrograms.getStudentsPrograms();
+        if(!studentsProgramsStore.getStudentsPrograms.length) {
+          await studentsProgramsStore.getStudentsPrograms();
         }
 
-          // if(studentsStore.getStatus() !== 200) {
-          //   throw new Error('failed fetch request');
-          //   window.location.reload();
-          // }
-          // console.log(studentsStore.getStatus()) :
-          // console.log(studentsStore.isFinishedUpdate, studentsStore.isFinishedDelete)
-  
-          // studentsStore.isFinishedDelete !== studentsStore.isFinishedDelete || studentsStore.isFinishedUpdate === studentsStore.isFinishedUpdate ? 
-          // console.log(studentsStore.isFinishedUpdate, studentsStore.isFinishedDelete) :
-          // console.log('test');
-  
-          // if(studentsStore.getStatus() !== 200) {
-          //   window.location.reload();
-          //   console.log(studentsStore.getStatus());
-          //   console.log('test');
-          // }
-          // console.log(studentsStore.getStatus());
       } catch (error) {
-        // window.location.reload();
         console.log(error.message);
       }
 
     })();
-  }, [students.statusStudent, studentsPrograms.statusProgram]);
+  }, [UsersStore.statusStudent, studentsProgramsStore.statusProgram]);
 
-  const card = students.students.map((student) => 
+  const card = UsersStore.students.map((student) => 
     <div className={css.card} key={student.id}>
       <Accordion.Item eventKey={student.id} >
         <table className={css.table}>
@@ -71,14 +56,14 @@ const Students = observer(() => {
                       id={student.id}
                       onClick={(e) => 
                         {if(e.target.value === 'status__active') {
-                          students.deleteUser(e.target.id) 
-                          students.changestatusStudent()
-                          students.getStudents();
+                          UsersStore.deleteUser(e.target.id) 
+                          .then(UsersStore.changestatusStudent())
+                          .then(UsersStore.getStudents());
                         }
                         else if (e.target.value === 'status__deleted') {
-                          students.updateUser(e.target.id)
-                          students.changestatusStudent()
-                          students.getStudents();
+                          UsersStore.updateUser(e.target.id)
+                          .then(UsersStore.changestatusStudent())
+                          .then(UsersStore.getStudents());
                         }}}>
                     {student.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
                   </button>
@@ -103,10 +88,10 @@ const Students = observer(() => {
                           className={css.input} 
                           type="text" 
                           placeholder="введите новый логин" 
-                          value={students.loginValue}
+                          value={UsersStore.loginValue}
                           onChange={(e) => 
                             {
-                              students.setLoginValue(e.target.value);
+                              UsersStore.setLoginValue(e.target.value);
                             }
                           }
                         />
@@ -116,10 +101,10 @@ const Students = observer(() => {
                           className={css.btn}
                           onClick={(e) => 
                             {
-                              students.updateUserLogin(e.target.id, loginInput.current.value);
-                              students.cleanLoginValue();
-                              students.changestatusStudent()
-                              students.getStudents()
+                              UsersStore.updateUserLogin(e.target.id, loginInput.current.value)
+                              .then(UsersStore.cleanLoginValue())
+                              .then(UsersStore.changestatusStudent())
+                              .then(UsersStore.getStudents())
                             }
                           }
                         >
@@ -138,10 +123,10 @@ const Students = observer(() => {
                         className={css.input} 
                         type="text" 
                         placeholder="введите новый пароль" 
-                        value={students.passwordValue}
+                        value={UsersStore.passwordValue}
                         onChange={(e) => 
                           {
-                            students.setPasswordValue(e.target.value);
+                            UsersStore.setPasswordValue(e.target.value);
                           }
                         }
                       />
@@ -150,10 +135,10 @@ const Students = observer(() => {
                         className={css.btn}
                         onClick={(e) => 
                           {
-                            students.updateUserPassword(e.target.id, passwordInput.current.value);
-                            students.cleanPasswordValue();
-                            students.changestatusStudent()
-                            students.getStudents()
+                            UsersStore.updateUserPassword(e.target.id, passwordInput.current.value)
+                            .then(UsersStore.cleanPasswordValue())
+                            .then(UsersStore.changestatusStudent())
+                            .then(UsersStore.getStudents())
                           }
                         }
                       >
@@ -178,7 +163,7 @@ const Students = observer(() => {
                         </tr>
                     </thead>
                       {
-                        studentsPrograms.students_programs
+                        studentsProgramsStore.students_programs
                           .filter((program) => program.id_student === student.id)
                           .map((program) => (
                             <tbody key={program.id}>
@@ -196,15 +181,15 @@ const Students = observer(() => {
                                           onClick={(e) => 
                                             {if(e.target.value === 'unfinished') 
                                               {
-                                                studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                                studentsPrograms.changeStatusProgram()
-                                                studentsPrograms.getStudentsPrograms()
+                                                studentsProgramsStore.deleteStudentsEducationPrograms(e.target.id, e.target.value)
+                                                .then(studentsProgramsStore.changeStatusProgram())
+                                                .then(studentsProgramsStore.getStudentsPrograms())
                                               } 
                                             else if (e.target.value === 'finished') 
                                               {
-                                                studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                                studentsPrograms.changeStatusProgram()
-                                                studentsPrograms.getStudentsPrograms()
+                                                studentsProgramsStore.updateStudentsEducationPrograms(e.target.id, e.target.value)
+                                                .then(studentsProgramsStore.changeStatusProgram())
+                                                .then(studentsProgramsStore.getStudentsPrograms())
                                               }
                                             }
                                           }
@@ -220,15 +205,15 @@ const Students = observer(() => {
                                         onClick={(e) => 
                                           {if(e.target.value === 'active') 
                                             {
-                                              studentsPrograms.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                              studentsPrograms.changeStatusProgram()
-                                              studentsPrograms.getStudentsPrograms()
+                                              studentsProgramsStore.deleteStudentsEducationPrograms(e.target.id, e.target.value)
+                                              .then(studentsProgramsStore.changeStatusProgram())
+                                              .then(studentsProgramsStore.getStudentsPrograms())
                                             } 
                                           else if (e.target.value === 'deleted') 
                                             {
-                                              studentsPrograms.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                              studentsPrograms.changeStatusProgram()
-                                              studentsPrograms.getStudentsPrograms()
+                                              studentsProgramsStore.updateStudentsEducationPrograms(e.target.id, e.target.value)
+                                              .then(studentsProgramsStore.changeStatusProgram())
+                                              .then(studentsProgramsStore.getStudentsPrograms())
                                             }
                                           }
                                         }
@@ -262,10 +247,10 @@ const Students = observer(() => {
           className={`${css.input} ${css.create_el}`} 
           type="text" 
           placeholder="введите логин" 
-          value={students.loginValue}
+          value={UsersStore.loginValue}
           onChange={(e) => 
             {
-              students.setLoginValue(e.target.value);
+              UsersStore.setLoginValue(e.target.value);
             }
           }
         />
@@ -274,10 +259,10 @@ const Students = observer(() => {
           className={`${css.input} ${css.create_el}`} 
           type="text" 
           placeholder="введите пароль" 
-          value={students.passwordValue}
+          value={UsersStore.passwordValue}
           onChange={(e) => 
             {
-              students.setPasswordValue(e.target.value);
+              UsersStore.setPasswordValue(e.target.value);
             }
           }
         />
@@ -286,11 +271,11 @@ const Students = observer(() => {
           className={`${css.btn} ${css.create_el}`}
           onClick={(e) => 
             {
-              students.createUser(e.target.value, loginInput.current.value, passwordInput.current.value);
-              students.cleanLoginValue();
-              students.cleanPasswordValue();
-              students.changestatusStudent()
-              students.getStudents()
+              UsersStore.createUser(e.target.value, loginInput.current.value, passwordInput.current.value);
+              UsersStore.cleanLoginValue();
+              UsersStore.cleanPasswordValue();
+              UsersStore.changestatusStudent()
+              UsersStore.getStudents()
             }
           }
         >

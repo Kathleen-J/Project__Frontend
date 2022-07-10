@@ -28,22 +28,12 @@
   border-left: 1px solid grey;
   border-right: 1px solid grey;
   padding: 10px;
+  width: 25%;
 }
 
 .title_left,
 .cell_left {
   border-left: 0px;
-  width: 25%;
-}
-
-.title_two,
-.cell_two {
-  width: 25%;
-}
-
-.title_three,
-.cell_three {
-  width: 25%;
 }
 
 .title_rigth,
@@ -51,15 +41,37 @@
   border-right: 0px;
 }
 
+/* edit-programs */
+.title_left_ed_pr,
+.cell_left_ed_pr {
+  border-left: 0px;
+  width: 18%;
+}
+
+.title_two_ed_pr,
+.cell_two_ed_pr {
+  width: 21%;
+}
+
+.title_three_ed_pr,
+.cell_three_ed_pr {
+  width: 21%;
+}
+
+.title_four_ed_pr,
+.cell_four_ed_pr {
+  width: 27%;
+}
+
 .status {
   color: white;
-  width: max-content;
   padding: 5px;
   margin-left: 10px;
   font-size: 17px;
   font-family: "Montserrat";
   background-color: rgb(255, 174, 53);
   border: 1px solid rgb(255, 174, 53);
+  cursor: pointer;
 }
 
 .status__active {
@@ -77,16 +89,17 @@
 }
 
 .change_block {
-  padding-top: 20px;  
+  padding-top: 20px;
   font-size: 18px;
 }
 
-.change_login, .change_password {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row;
-    max-width: 80%;
+.change_login,
+.change_password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  max-width: 80%;
 }
 
 .input {
@@ -96,7 +109,7 @@
   border-radius: 8px;
   font-size: 17px;
   font-weight: 550;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   margin-right: 20px;
   color: #56c7ab;
 }
@@ -122,31 +135,30 @@
 }
 
 .programs {
-    padding-top: 40px;
+  padding-top: 40px;
 }
 
 .programs_title {
-    font-size: 18px;    
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .program_table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
 }
 
 .p_title {
-    border-bottom: 3px solid gray;
-    padding: 10px;
+  border-bottom: 3px solid gray;
+  padding: 10px;
 }
 
 .p_cell {
-    padding: 20px 10px;
-    border-bottom: 1px solid gray;
+  padding: 20px 10px;
+  border-bottom: 1px solid gray;
 }
-
 
 .create_block {
   margin-top: 20px;

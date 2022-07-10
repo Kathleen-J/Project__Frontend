@@ -1,17 +1,23 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import { AuthStore } from "./authStore";
 
-class Programs {
+export class curatorsDisciplinesStore {
   curators_of_disciplines = [];
   statusDiscipline = false;
   curators = [];
 
-  constructor(curators_of_disciplines, statusDiscipline, curators) {
+  constructor(AuthStore) {
     makeAutoObservable(this);
+    this.AuthStore = AuthStore;
   }
 
   changeStatusDiscipline() {
     this.statusDiscipline = !this.statusDiscipline
+  }
+
+  cleanStore() {
+    this.curators_of_disciplines = [];
+    this.statusDiscipline = false;
+    this.curators = [];
   }
   
   async getCuratorsOfDisciplines() {
@@ -20,7 +26,7 @@ class Programs {
         "http://localhost:3001/api/curatorsDisciplines?status=all",
         {
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             "Content-Type": 'application/json'
           }
         }
@@ -35,18 +41,6 @@ class Programs {
     }
   }
 
-  /* id in req.user.id
-  async getMyCurators() {
-    const response = await fetch(
-       "http://localhost:3001/api/curatorsDisciplines"
-    );
-
-    const myCurators = await response.json();
-      runInAction(() => {
-        this.curators = [...myCurators];
-      });
-  } */
-
   async deleteCuratorsDiscipline(id) {
     try {
       const response = await fetch(
@@ -55,7 +49,7 @@ class Programs {
           method: 'DELETE',
           body: JSON.stringify({id}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -73,7 +67,7 @@ class Programs {
           method: 'PUT',
           body: JSON.stringify({id}),
           headers: {
-            "Authorization": `Bearer ${localStorage.getItem('token')}`,
+            "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }
@@ -84,5 +78,3 @@ class Programs {
   }
 
 }
-
-export default new Programs();

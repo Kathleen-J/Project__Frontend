@@ -1,7 +1,5 @@
 .wrapper {
     padding: 100px 0;
-    background-color: #3fceaa;
-    background-color: white;
     background-color: rgb(241, 241, 241);
     min-height: 100vh;
     color: rgb(251, 251, 251);
@@ -12,8 +10,6 @@
   .card {
     border: 2px solid #535353;
     box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
-    background-color: rgb(241, 241, 241);
-    background-color: #3fceaa;
     background-color: #ffd44a87;
     margin: 25px 40px;
     padding: 13px;

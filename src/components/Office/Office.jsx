@@ -4,12 +4,12 @@ import css from './Office.module.css';
 import SideBar from "./SideBar/SideBar";
 import Loading from '../Loading/Loading';
 import NotFound from '../NotFound/NotFound';
-import MyStudents from './Content/CuratorPage/MyStudents';
 const EditPrograms = React.lazy(() => import('./Content/AdminPage/EditPrograms/EditPrograms'));
 const Students = React.lazy(() => import('./Content/AdminPage/Students/Students'));
 const Curators = React.lazy(() => import('./Content/AdminPage/Curators/Curators'));
 const MyPrograms = React.lazy(() => import('./Content/StudentPage/MyPrograms'));
 const Profile = React.lazy(() => import('./Content/Profile/Profile'));
+const MyStudents = React.lazy(() => import('./Content/CuratorPage/MyStudents'));
 
 
 const Office = () => {
@@ -30,7 +30,7 @@ const Office = () => {
             <Route path="/curators" element={<Suspense fallback={<Loading />}> <Curators /> </Suspense>}/>
 
             {/* curator */}
-            <Route path={"/my-students"} element={<MyStudents />} />
+            <Route path={"/my-students"} element={<Suspense fallback={<Loading />}> <MyStudents /> </Suspense>} />
 
             <Route path="*" element={<NotFound />} />
 

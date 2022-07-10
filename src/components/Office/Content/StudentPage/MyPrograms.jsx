@@ -1,23 +1,26 @@
 import css from "./MyPrograms.module.css";
 import { Accordion } from "react-bootstrap";
-import students from "../../../../store/studentsPrograms";
-import { useEffect, useState } from "react";
+// import students from "../../../../store/studentsProgramsStore";
+import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
+import {MainStoreContext} from "../../../../store/mainStore";
 
 const MyPrograms = observer(() => {
+  
+  const {AuthStore, studentsProgramsStore} = useContext(MainStoreContext);
 
     useEffect(() => {
         (async() => {
     
-          if(!students.getMyPrograms.length) {
-            await students.getMyPrograms();
+          if(!studentsProgramsStore.getMyPrograms.length) {
+            await studentsProgramsStore.getMyPrograms();
           }
           
         })();
-      }, [students.students_programs]);
+      }, [studentsProgramsStore.students_programs]);
 
       
-  const cardUnfinished = students.myPrograms
+  const cardUnfinished = studentsProgramsStore.myPrograms
     .filter((student) => student.status_education === "unfinished")
     .map((student) => (
       <div className={css.card} key={student.id}>
@@ -43,24 +46,28 @@ const MyPrograms = observer(() => {
                   {new Date(student.purchase_date).toDateString().slice(4)}
                 </td>
                 <td className={`${css.cell} ${css.cell_right}`}>
-                  <div>{student.status_curator === 'active' ? student.curator : "Не назначен"}</div>
-                    {
-                        student.status_curator === 'active' ? 
-                        (
-                            <button className={css.status} id={student.id}>
-                                Связаться
-                            </button>
-                        ) 
-                        : 
-                        (
-                            ""
-                        )
-                    }
+                  <div>{student.status_curator === 'active' && student.status_curator_user === 'active' ? student.curator : "Не назначен"}</div>
                 </td>
               </tr>
             </tbody>
           </table>
-          <Accordion.Header>Содержание программы</Accordion.Header>
+          <div className='buttons'>            
+            <Accordion.Header>
+              Содержание программы
+            </Accordion.Header>
+            {
+              student.status_curator === 'active' && student.status_curator_user === 'active' ? 
+              (
+                  <button className={`${css.status} accordion-button`} id={student.id}>
+                      Связаться
+                  </button>
+              ) 
+              : 
+              (
+                  ""
+              )
+            }
+          </div>
           <Accordion.Body>
             <div className={css.options}>
               <div className={css.programs}>
@@ -78,7 +85,7 @@ const MyPrograms = observer(() => {
       </div>
     ));
 
-  const cardFinished = students.myPrograms
+  const cardFinished = studentsProgramsStore.myPrograms
     .filter((student) => student.status_education === "finished")
     .map((student) => (
       <div className={css.card} key={student.id}>
@@ -124,10 +131,21 @@ const MyPrograms = observer(() => {
 
   return (
     <div className={css.wrapper}>
-        <div>Активные программы</div>
-        <Accordion>{cardUnfinished}</Accordion>
+
+      <div>Активные программы</div>
+      {
+        cardUnfinished?.length ?
+          <Accordion>{cardUnfinished}</Accordion> :
+          <div>Нет активных программ</div>
+      }
+
         <div>Завершенные программы</div>
-        <Accordion>{cardFinished}</Accordion>
+        {
+        cardFinished?.length ?
+          <Accordion>{cardFinished}</Accordion> :
+          <div>Нет завершенных программ</div>
+      }
+
     </div>
   );
 });

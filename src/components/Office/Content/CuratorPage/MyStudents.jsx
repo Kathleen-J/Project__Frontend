@@ -1,21 +1,24 @@
 import { observer } from "mobx-react-lite";
 import css from "./MyStudents.module.css";
-import students from '../../../../store/usersStore';
-import { useEffect } from "react";
+// import students from '../../../../store/usersStore';
+import { useContext, useEffect } from "react";
+import {MainStoreContext} from "../../../../store/mainStore";
 
 const MyStudents = observer(() => {
+  
+  const {AuthStore, UsersStore} = useContext(MainStoreContext);
 
     useEffect(() => {
         (async() => {
     
-          if(!students.getMyStudents.length) {
-            await students.getMyStudents();
+          if(!UsersStore.getMyStudents.length) {
+            await UsersStore.getMyStudents();
           }
           
         })();
       }, []);
 
-  const myStudents = students.myStudents.map((student) => (
+  const myStudents = UsersStore.myStudents.map((student) => (
     <div className={css.card} key={student.id} id={student.id}>
       <table className={css.table}>
         <thead>
@@ -43,7 +46,14 @@ const MyStudents = observer(() => {
     </div>
   ));
 
-  return <div className={css.wrapper}>{myStudents}</div>;
+  return (
+    <div className={css.wrapper}>
+      {myStudents?.length ?
+        <div>{myStudents}</div> :
+        <div>У вас нет студентов</div>
+      }
+    </div>
+  );
 });
 
 export default MyStudents;

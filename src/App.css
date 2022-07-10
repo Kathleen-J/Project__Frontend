@@ -42,6 +42,19 @@ body {
   margin: 0;
 }
 
+.buttons{
+  margin: 0;
+  margin-right: 14%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons .accordion-button {
+  color: #4a4a4a;
+  background-color: #f1f1f1;
+  border: 1px solid rgb(241 241 241);
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: #292e33 rgba(255, 255, 255, 0);

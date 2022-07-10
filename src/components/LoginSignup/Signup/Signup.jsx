@@ -3,13 +3,11 @@ import css from "../LoginSignup.module.css";
 import React, { useContext } from "react";
 import { MainStoreContext } from "../../../store/mainStore";
 import { observer } from "mobx-react-lite";
-import users from "../../../store/usersStore";
 import { Link } from "react-router-dom";
 
 const SignUp = observer(() => {
 
-  const {AuthStore} = useContext(MainStoreContext);
-  // console.log(AuthStore.token);
+  const {AuthStore, UsersStore} = useContext(MainStoreContext);
 
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
@@ -23,10 +21,10 @@ const SignUp = observer(() => {
             className={css.login}
             type="text"
             placeholder="Введите логин"
-            value={users.loginValue}
+            value={UsersStore.loginValue}
             onChange={(e) => 
               {
-                users.setLoginValue(e.target.value);
+                UsersStore.setLoginValue(e.target.value);
               }
             }
           />
@@ -35,10 +33,10 @@ const SignUp = observer(() => {
             type="text"
             placeholder="Введите пароль"
             ref={passwordInput}
-            value={users.passwordValue}
+            value={UsersStore.passwordValue}
             onChange={(e) => 
               {
-                users.setPasswordValue(e.target.value);
+                UsersStore.setPasswordValue(e.target.value);
               }
             }
           />
@@ -47,8 +45,8 @@ const SignUp = observer(() => {
             onClick={(e) => 
               {
                 AuthStore.getToken(loginInput.current.value, passwordInput.current.value);
-                users.cleanLoginValue();
-                users.cleanPasswordValue();
+                UsersStore.cleanLoginValue();
+                UsersStore.cleanPasswordValue();
               }
             }
           >

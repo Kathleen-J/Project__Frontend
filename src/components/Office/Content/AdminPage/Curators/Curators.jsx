@@ -1,12 +1,12 @@
-import css from "./Curators.module.css";
+import css from "../../Content.module.css";
 import {Accordion} from 'react-bootstrap';
-import curators from "../../../../../store/usersStore";
-import curatorsOfDisciplines from "../../../../../store/curatorsDisciplinesStore"; 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-
+import {MainStoreContext} from "../../../../../store/mainStore";
 
 const Curators = observer(() => {
+  
+  const {UsersStore, curatorsDisciplinesStore} = useContext(MainStoreContext);
 
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
@@ -15,18 +15,18 @@ const Curators = observer(() => {
   useEffect(() => {
     (async() => {
 
-      if(!curators.getCurators.length) {
-        await curators.getCurators();
+      if(!UsersStore.getCurators.length) {
+        await UsersStore.getCurators();
       }
   
-      if(!curatorsOfDisciplines.getCuratorsOfDisciplines.length) {
-        await curatorsOfDisciplines.getCuratorsOfDisciplines();
+      if(!curatorsDisciplinesStore.getCuratorsOfDisciplines.length) {
+        await curatorsDisciplinesStore.getCuratorsOfDisciplines();
       }
       
     })();
-  }, [curators.statusCurator, curatorsOfDisciplines.statusDiscipline]);
+  }, [UsersStore.statusCurator, curatorsDisciplinesStore.statusDiscipline]);
 
-  const card = curators.curators.map((curator) => 
+  const card = UsersStore.curators.map((curator) => 
     <div className={css.card} key={curator.id}>
       <Accordion.Item eventKey={curator.id} >
         <table className={css.table}>
@@ -49,15 +49,15 @@ const Curators = observer(() => {
                     onClick={(e) => 
                       {if(e.target.value === 'status__active') 
                         {
-                          curators.deleteUser(e.target.id)
-                          curators.changestatusCurator()
-                          curators.getCurators()
+                          UsersStore.deleteUser(e.target.id)
+                          .then(UsersStore.changestatusCurator())
+                          .then(UsersStore.getCurators());
                         } 
                       else if (e.target.value === 'status__deleted') 
                         {
-                          curators.updateUser(e.target.id)
-                          curators.changestatusCurator()
-                          curators.getCurators()
+                          UsersStore.updateUser(e.target.id)
+                          .then(UsersStore.changestatusCurator())
+                          .then(UsersStore.getCurators());
                         }}}>
                   {curator.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
                 </button>
@@ -82,10 +82,10 @@ const Curators = observer(() => {
                           className={css.input} 
                           type="text" 
                           placeholder="введите новый логин" 
-                          value={curators.loginValue}
+                          value={UsersStore.loginValue}
                           onChange={(e) => 
                             {
-                              curators.setLoginValue(e.target.value);
+                              UsersStore.setLoginValue(e.target.value);
                             }
                           }
                         />
@@ -95,10 +95,10 @@ const Curators = observer(() => {
                           className={css.btn}
                           onClick={(e) => 
                             {
-                              curators.updateUserLogin(e.target.id, loginInput.current.value);
-                              curators.cleanLoginValue();
-                              curators.changestatusCurator()
-                              curators.getCurators()
+                              UsersStore.updateUserLogin(e.target.id, loginInput.current.value);
+                              UsersStore.cleanLoginValue();
+                              UsersStore.changestatusCurator()
+                              UsersStore.getCurators()
                             }
                           }
                         >
@@ -116,10 +116,10 @@ const Curators = observer(() => {
                         className={css.input} 
                         type="text" 
                         placeholder="введите новый пароль" 
-                        value={curators.passwordValue}
+                        value={UsersStore.passwordValue}
                         onChange={(e) => 
                           {
-                            curators.setPasswordValue(e.target.value);
+                            UsersStore.setPasswordValue(e.target.value);
                           }
                         }
                       />
@@ -128,10 +128,10 @@ const Curators = observer(() => {
                         className={css.btn}
                         onClick={(e) => 
                           {
-                            curators.updateUserPassword(e.target.id, passwordInput.current.value);
-                            curators.cleanPasswordValue();
-                            curators.changestatusCurator()
-                            curators.getCurators()
+                            UsersStore.updateUserPassword(e.target.id, passwordInput.current.value);
+                            UsersStore.cleanPasswordValue();
+                            UsersStore.changestatusCurator()
+                            UsersStore.getCurators()
                           }
                         }
                       >
@@ -152,7 +152,7 @@ const Curators = observer(() => {
                         </tr>
                     </thead>
                       {
-                        curatorsOfDisciplines.curators_of_disciplines
+                        curatorsDisciplinesStore.curators_of_disciplines
                           .filter((discipline) => discipline.id_curator === curator.id)
                           .map((discipline) => (
                             <tbody key={discipline.id}>
@@ -167,15 +167,15 @@ const Curators = observer(() => {
                                             onClick={(e) => 
                                               {if(e.target.value === 'status__active') 
                                                 {
-                                                  curatorsOfDisciplines.deleteCuratorsDiscipline(e.target.id)
-                                                  curatorsOfDisciplines.changeStatusDiscipline()
-                                                  curatorsOfDisciplines.getCuratorsOfDisciplines()
+                                                  curatorsDisciplinesStore.deleteCuratorsDiscipline(e.target.id)
+                                                  .then(curatorsDisciplinesStore.changeStatusDiscipline())
+                                                  .then(curatorsDisciplinesStore.getCuratorsOfDisciplines())
                                                 } 
                                               else if (e.target.value === 'status__deleted') 
                                                 {
-                                                  curatorsOfDisciplines.updateCuratorsDiscipline(e.target.id)
-                                                  curatorsOfDisciplines.changeStatusDiscipline()
-                                                  curatorsOfDisciplines.getCuratorsOfDisciplines()
+                                                  curatorsDisciplinesStore.updateCuratorsDiscipline(e.target.id)
+                                                  .then(curatorsDisciplinesStore.changeStatusDiscipline())
+                                                  .then(curatorsDisciplinesStore.getCuratorsOfDisciplines())
                                                 }}}
                                           >
                                             {discipline.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
@@ -206,10 +206,10 @@ const Curators = observer(() => {
           className={`${css.input} ${css.create_el}`} 
           type="text" 
           placeholder="введите логин" 
-          value={curators.loginValue}
+          value={UsersStore.loginValue}
           onChange={(e) => 
             {
-              curators.setLoginValue(e.target.value);
+              UsersStore.setLoginValue(e.target.value);
             }
           }
         />
@@ -218,10 +218,10 @@ const Curators = observer(() => {
           className={`${css.input} ${css.create_el}`} 
           type="text" 
           placeholder="введите пароль" 
-          value={curators.passwordValue}
+          value={UsersStore.passwordValue}
           onChange={(e) => 
             {
-              curators.setPasswordValue(e.target.value);
+              UsersStore.setPasswordValue(e.target.value);
             }
           }
         />
@@ -230,11 +230,11 @@ const Curators = observer(() => {
           className={`${css.btn} ${css.create_el}`}
           onClick={(e) => 
             {
-              curators.createUser(e.target.value, loginInput.current.value, passwordInput.current.value);
-              curators.cleanLoginValue();
-              curators.cleanPasswordValue();
-              curators.changestatusCurator()
-              curators.getCurators()
+              UsersStore.createUser(e.target.value, loginInput.current.value, passwordInput.current.value);
+              UsersStore.cleanLoginValue();
+              UsersStore.cleanPasswordValue();
+              UsersStore.changestatusCurator()
+              UsersStore.getCurators()
             }
           }
         >

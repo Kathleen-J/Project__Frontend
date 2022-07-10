@@ -1,11 +1,14 @@
 import css from "./Program.module.css";
-import programsStore from "../../../store/programsStore";
-import { useEffect, useState } from "react";
+// import programsStore from "../../../store/programsStore";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { observer } from "mobx-react-lite";
 import NotFound from '../../NotFound/NotFound';
+import {MainStoreContext} from "../../../store/mainStore";
 
 const Program = observer((props) => {
+    
+    const {AuthStore, ProgramsStore} = useContext(MainStoreContext);
 
     const [isActiveCard, setStateCard] = useState(true);
 
@@ -15,7 +18,7 @@ const Program = observer((props) => {
     (async() => {
 
             try {
-                await programsStore.getProgram(id);                
+                await ProgramsStore.getProgram(id);                
             } catch (error) {
                 setStateCard(false);
             }
@@ -24,7 +27,7 @@ const Program = observer((props) => {
     }, [id]);
       
       
-    const programTitle = programsStore.program.map((program) => (        
+    const programTitle = ProgramsStore.program.map((program) => (        
         <div className={css.education} key={program.id}>    
             <div className={css.education__form}>{program.education_form}</div>
             <div className={css.education__name}>
