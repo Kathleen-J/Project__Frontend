@@ -1,11 +1,8 @@
 import css from "../../Content.module.css";
 import {Accordion} from 'react-bootstrap';
-// import students from "../../../../../store/usersStore";
-// import studentsPrograms from "../../../../../store/studentsProgramsStore";
 import {MainStoreContext} from "../../../../../store/mainStore";
 import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-
 
 const Students = observer(() => {
 

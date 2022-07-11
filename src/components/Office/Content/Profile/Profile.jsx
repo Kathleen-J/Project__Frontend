@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import css from "./Profile.module.css";
 import { observer } from "mobx-react-lite";
 import { MainStoreContext } from "../../../../store/mainStore";
@@ -6,21 +6,17 @@ import { MainStoreContext } from "../../../../store/mainStore";
 const Profile = observer(() => {
 
     const {AuthStore, UsersStore} = useContext(MainStoreContext);
-    const [login, setLogin] = useState('');
-    const [id, setId] = useState(null);
 
     let loginInput = React.createRef();
     let passwordInput = React.createRef();
 
     useEffect(() => {
         AuthStore.decodeData();
-        setLogin(AuthStore.loginUser);
-        setId(AuthStore.idUser);
-    }, []);
+    }, [AuthStore.token]);
     
   return (
     <div className={css.content_profile}>
-        <div className={css.loginUser}>Welcome back, {login}!</div>
+        <div className={css.loginUser}>Welcome back, {AuthStore.loginUser}!</div>
         
         <div className={css.change_block}>
 
@@ -40,13 +36,13 @@ const Profile = observer(() => {
                           }
                         />
                     <button 
-                        id={id}
+                        id={AuthStore.idUser}
                         className={css.button}
                         onClick={(e) => 
                             {
-                              UsersStore.updateUserLogin(e.target.id, loginInput.current.value);
+                              UsersStore.updateUserLogin(e.target.id, loginInput.current.value)
+                              .then(AuthStore.getNewToken(loginInput.current.value))
                               UsersStore.cleanLoginValue();
-                              setLogin(loginInput.current.value);
                             }
                         }
                     >
@@ -71,7 +67,7 @@ const Profile = observer(() => {
                         }
                     />
                     <button 
-                        id={id}
+                        id={AuthStore.idUser}
                         className={css.button}
                         onClick={(e) => 
                             {

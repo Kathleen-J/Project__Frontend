@@ -15,9 +15,9 @@ export class studentsProgramsStore {
     this.statusProgram = !this.statusProgram
   }
 
+  //clean state
   cleanStore() {
     this.students_programs = [];
-    this.statusProgram = false;
     this.students = [];
     this.myPrograms = [];
   }

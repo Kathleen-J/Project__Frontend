@@ -14,9 +14,9 @@ export class curatorsDisciplinesStore {
     this.statusDiscipline = !this.statusDiscipline
   }
 
+  //clean state
   cleanStore() {
     this.curators_of_disciplines = [];
-    this.statusDiscipline = false;
     this.curators = [];
   }
   

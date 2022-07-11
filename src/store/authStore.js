@@ -4,6 +4,7 @@ export class AuthStore {
     token = localStorage.getItem('token');
     loginUser = '';
     idUser = null;
+    roleUser = '';
 
     constructor(token) {
         makeAutoObservable(this)    
@@ -44,11 +45,39 @@ export class AuthStore {
         });
     }
 
+    async getNewToken(login) {
+        const response = await fetch(
+            'http://localhost:3001/api/auth/new-token',
+            {
+                method: 'POST',
+                headers: {
+                    "Authorization": `Bearer ${this.token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({login})
+            }
+        )
+        
+        if(response.status > 400) {
+            console.log('error');
+            return;
+        }
+
+        const {token} = await response.json();
+        
+        runInAction(() => {
+            localStorage.setItem('token', token);
+            this.token = token;
+        });
+    }
+
+
     decodeData() {
         const [, decodedPayload, ] = this.token.split('.');
         const payload = JSON.parse(window.atob(decodedPayload));
         this.loginUser = payload.login;
         this.idUser = payload.id;
+        this.roleUser = payload.role;
     }
     
     logOut() {

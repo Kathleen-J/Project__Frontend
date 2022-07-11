@@ -17,11 +17,12 @@ const Program = React.lazy(() => import("./components/Programs/Program/Program")
 const App = observer((props) => {
 
   const {AuthStore} = useContext(MainStoreContext);
-  
+
+  // AuthStore.isLoggedIn && 
   // useEffect(() => {
-  //   AuthStore.getToken('Kathleen', '123');
-  // }, [])
-  
+  //   AuthStore.decodeData();
+  // }, []);
+    
   return (
     AuthStore.isLoggedIn ? 
 

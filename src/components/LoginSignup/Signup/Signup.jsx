@@ -3,18 +3,19 @@ import css from "../LoginSignup.module.css";
 import React, { useContext } from "react";
 import { MainStoreContext } from "../../../store/mainStore";
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
+import { useNavigate  } from "react-router-dom";
 
 const SignUp = observer(() => {
 
   const {AuthStore, UsersStore} = useContext(MainStoreContext);
+  let navigate = useNavigate();
 
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
 
   return (
     <div className={"modalWindow"}>
-      <form action="" method="post" className={style.modal}>
+      <div className={style.modal}>
         <div className={css.form}>
           <input
             ref={loginInput}
@@ -39,21 +40,23 @@ const SignUp = observer(() => {
                 UsersStore.setPasswordValue(e.target.value);
               }
             }
-          />
-          <Link to='/office/profile' 
-            className={css.send}
-            onClick={(e) => 
-              {
-                AuthStore.getToken(loginInput.current.value, passwordInput.current.value);
-                UsersStore.cleanLoginValue();
-                UsersStore.cleanPasswordValue();
+          />         
+            <button
+              className={css.send}
+              onClick={(e) => 
+                {
+                  AuthStore.getToken(loginInput.current.value, passwordInput.current.value)
+                  // .then(() => AuthStore.decodeData())
+                  .then(() => AuthStore.isLoggedIn ? navigate("/office/profile") : (alert('Неверный логин или пароль')));
+                  UsersStore.cleanLoginValue();
+                  UsersStore.cleanPasswordValue();
+                }
               }
-            }
-          >
-            Войти
-          </Link>
+            >
+              Войти
+            </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 });

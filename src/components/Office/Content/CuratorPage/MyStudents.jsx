@@ -1,12 +1,11 @@
 import { observer } from "mobx-react-lite";
 import css from "./MyStudents.module.css";
-// import students from '../../../../store/usersStore';
 import { useContext, useEffect } from "react";
 import {MainStoreContext} from "../../../../store/mainStore";
 
 const MyStudents = observer(() => {
   
-  const {AuthStore, UsersStore} = useContext(MainStoreContext);
+  const {UsersStore, studentsProgramsStore, curatorsDisciplinesStore, ProgramsStore} = useContext(MainStoreContext);
 
     useEffect(() => {
         (async() => {
@@ -16,7 +15,15 @@ const MyStudents = observer(() => {
           }
           
         })();
-      }, []);
+      }, [
+          UsersStore.statusStudent, 
+          UsersStore.statusCurator, 
+          studentsProgramsStore.statusProgram, 
+          curatorsDisciplinesStore.statusDiscipline, 
+          ProgramsStore.isFinishedDelete, 
+          ProgramsStore.isFinishedUpdate
+        ]
+    );
 
   const myStudents = UsersStore.myStudents.map((student) => (
     <div className={css.card} key={student.id} id={student.id}>

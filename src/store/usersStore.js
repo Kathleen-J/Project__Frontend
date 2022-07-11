@@ -41,11 +41,10 @@ export class UsersStore {
     this.passwordValue = '';
   }
 
+  //clean state
   cleanStore() {
     this.students = [];
     this.curators = [];
-    this.statusStudent = false;
-    this.statusCurator = false;
     this.myStudents = [];
   }
 
@@ -53,7 +52,8 @@ export class UsersStore {
     return this.status;
   } */
 
-  //       GET  
+  //       GET
+
   async getStudents() {
     try {
       const response = await fetch(

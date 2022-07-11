@@ -1,12 +1,11 @@
 import css from "../../Content.module.css";
 import { observer } from "mobx-react-lite";
 import { useContext, useEffect } from "react";
-// import programsStore from "../../../../../store/programsStore";
 import {MainStoreContext} from "../../../../../store/mainStore";
 
 const EditPrograms = observer(() => {
     
-    const {AuthStore, ProgramsStore} = useContext(MainStoreContext);
+    const {ProgramsStore} = useContext(MainStoreContext);
 
     useEffect(() => {
         (async() => {

@@ -21,13 +21,12 @@ export class ProgramsStore {
     this.isFinishedUpdate = !this.isFinishedUpdate
   }
 
+  //clean state
   cleanStore() {
     this.areas = [];
     this.programs = [];
     this.program = [];
     this.allprograms = [];
-    this.isFinishedDelete = false;
-    this.isFinishedUpdate = false;
   }
 
   async getAreas() {

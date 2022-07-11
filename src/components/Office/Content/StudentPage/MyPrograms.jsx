@@ -1,13 +1,12 @@
 import css from "./MyPrograms.module.css";
 import { Accordion } from "react-bootstrap";
-// import students from "../../../../store/studentsProgramsStore";
 import { useContext, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import {MainStoreContext} from "../../../../store/mainStore";
 
 const MyPrograms = observer(() => {
   
-  const {AuthStore, studentsProgramsStore} = useContext(MainStoreContext);
+  const {UsersStore, studentsProgramsStore, curatorsDisciplinesStore, ProgramsStore} = useContext(MainStoreContext);
 
     useEffect(() => {
         (async() => {
@@ -17,8 +16,15 @@ const MyPrograms = observer(() => {
           }
           
         })();
-      }, [studentsProgramsStore.students_programs]);
-
+      }, [
+        UsersStore.statusStudent, 
+        UsersStore.statusCurator, 
+        studentsProgramsStore.statusProgram, 
+        curatorsDisciplinesStore.statusDiscipline, 
+        ProgramsStore.isFinishedDelete, 
+        ProgramsStore.isFinishedUpdate
+      ]
+    );
       
   const cardUnfinished = studentsProgramsStore.myPrograms
     .filter((student) => student.status_education === "unfinished")
