@@ -1,4 +1,4 @@
-import css from "../Header/Header.module.css";
+import css from "../Headers/Header.module.css";
 import React, { useContext } from "react";
 import { MainStoreContext } from "../../store/mainStore";
 import { observer } from "mobx-react-lite";
@@ -18,6 +18,7 @@ const HeaderAuth = observer(() => {
           ProgramsStore.cleanStore()
           studentsProgramsStore.cleanStore()
           UsersStore.cleanStore()
+          window.scrollTo(0, 0)
         }}>Sign Out</Link>
     </header>
   

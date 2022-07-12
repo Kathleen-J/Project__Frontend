@@ -1,21 +1,24 @@
 import { observer } from "mobx-react-lite";
 import css from "./MyStudents.module.css";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {MainStoreContext} from "../../../../store/mainStore";
+import Loading from "../../../secondary/Loading/Loading";
 
 const MyStudents = observer(() => {
   
   const {UsersStore, studentsProgramsStore, curatorsDisciplinesStore, ProgramsStore} = useContext(MainStoreContext);
+  const [status, setStatus] = useState(false);
 
-    useEffect(() => {
-        (async() => {
+useEffect(() => {
+  (async() => {
     
-          if(!UsersStore.getMyStudents.length) {
-            await UsersStore.getMyStudents();
-          }
+    if(!UsersStore.getMyStudents.length) {
+      await UsersStore.getMyStudents();
+      await setStatus(true);
+    }
           
-        })();
-      }, [
+      })();
+    }, [
           UsersStore.statusStudent, 
           UsersStore.statusCurator, 
           studentsProgramsStore.statusProgram, 
@@ -23,7 +26,7 @@ const MyStudents = observer(() => {
           ProgramsStore.isFinishedDelete, 
           ProgramsStore.isFinishedUpdate
         ]
-    );
+);
 
   const myStudents = UsersStore.myStudents.map((student) => (
     <div className={css.card} key={student.id} id={student.id}>
@@ -54,12 +57,15 @@ const MyStudents = observer(() => {
   ));
 
   return (
+    status ?
     <div className={css.wrapper}>
       {myStudents?.length ?
         <div>{myStudents}</div> :
         <div>У вас нет студентов</div>
       }
     </div>
+    :
+    <Loading />
   );
 });
 

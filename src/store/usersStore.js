@@ -3,12 +3,12 @@ import { makeAutoObservable, runInAction } from "mobx";
 export class UsersStore {
   students = [];
   curators = [];
-  statusStudent = false;
-  statusCurator = false;
-  // status = null;
+  myStudents = [];
+  statusUser = '';
   loginValue = '';
   passwordValue = '';
-  myStudents = [];
+  statusStudent = false;
+  statusCurator = false;
 
   constructor(AuthStore) {
     makeAutoObservable(this);
@@ -46,13 +46,30 @@ export class UsersStore {
     this.students = [];
     this.curators = [];
     this.myStudents = [];
+    this.statusUser = '';
   }
 
-/*   getStatus() {
-    return this.status;
-  } */
-
   //       GET
+  async getStatusUser() {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/users/${this.AuthStore.idUser}`,
+        {
+          headers: {
+            "Authorization": `Bearer ${this.AuthStore.token}`,
+            "Content-Type": 'application/json'
+          }
+        }
+      );
+      const status = await response.json();
+
+      runInAction(() => {
+        this.statusUser = status.status_user;
+      });
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
 
   async getStudents() {
     try {
@@ -65,7 +82,7 @@ export class UsersStore {
           }
         }
       );
-      this.status = response.status;
+      // this.status = response.status;
       const students_response = await response.json();
 
       runInAction(() => {
@@ -127,7 +144,6 @@ export class UsersStore {
           method: 'POST',
           body: JSON.stringify({role, login, password}),
           headers: {
-            // "Authorization": `Bearer ${this.AuthStore.token}`,
             'Content-Type': 'application/json'
           }
         }

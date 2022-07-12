@@ -5,12 +5,13 @@ export class studentsProgramsStore {
   statusProgram = false;
   students = [];
   myPrograms = [];
-
+  myProgram = {};
+  
   constructor(AuthStore) {
     makeAutoObservable(this);
     this.AuthStore = AuthStore;
   }
-
+  
   changeStatusProgram() {
     this.statusProgram = !this.statusProgram
   }
@@ -20,8 +21,10 @@ export class studentsProgramsStore {
     this.students_programs = [];
     this.students = [];
     this.myPrograms = [];
+    this.myProgram = {};
   }
 
+  //       GET
   async getStudentsPrograms() {
     try {
       const response = await fetch(
@@ -37,6 +40,27 @@ export class studentsProgramsStore {
 
       runInAction(() => {
         this.students_programs = [...students_programs_response];
+      });
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
+
+  async getMyProgram(id) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/studentsPrograms/${id}`,
+         {
+          headers: {
+            "Authorization": `Bearer ${this.AuthStore.token}`,
+            "Content-Type": 'application/json'
+          }
+         }
+      );
+      const students_programs_response = await response.json();
+
+      runInAction(() => {
+        this.myProgram = students_programs_response;
       });
     } catch (e) {
       throw new Error(e.message);
@@ -64,6 +88,7 @@ export class studentsProgramsStore {
     }
   }
 
+  //      DELETE  
   async deleteStudentsEducationPrograms(id, value) {
     try {
       const response = await fetch(
@@ -82,6 +107,7 @@ export class studentsProgramsStore {
     }
   }
   
+  //       PUT
   async updateStudentsEducationPrograms(id, value) {
     try {
       const response = await fetch(

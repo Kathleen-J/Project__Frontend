@@ -1,17 +1,20 @@
 import css from "../../Content.module.css";
 import { observer } from "mobx-react-lite";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {MainStoreContext} from "../../../../../store/mainStore";
+import Loading from "../../../../secondary/Loading/Loading";
 
 const EditPrograms = observer(() => {
     
     const {ProgramsStore} = useContext(MainStoreContext);
+    const [status, setStatus] = useState(false);
 
-    useEffect(() => {
-        (async() => {
-    
-          if(!ProgramsStore.allprograms.length) {
+useEffect(() => {
+    (async() => {
+        
+        if(!ProgramsStore.allprograms.length) {
             await ProgramsStore.getAllPrograms();
+            await setStatus(true);
           }
           
         })();
@@ -65,9 +68,12 @@ const EditPrograms = observer(() => {
     )
 
     return (
+        status ?        
         <div className={css.wrapper}> 
             {allPrograms}
         </div>
+        :
+        <Loading />
     )
 })
 

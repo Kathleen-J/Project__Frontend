@@ -1,23 +1,25 @@
 import css from "./AllPrograms.module.css";
 import { observer } from "mobx-react-lite";
 import { useEffect, useState, useContext } from "react";
-// import programs from "../../../store/programsStore";
 import { Link } from "react-router-dom";
-import NotFound from '../../NotFound/NotFound';
+import NotFound from '../../secondary/NotFound/NotFound';
 import {MainStoreContext} from "../../../store/mainStore";
+import Loading from "../../secondary/Loading/Loading";
 
 const AllPrograms = observer((props) => {
   
-  const {AuthStore, ProgramsStore} = useContext(MainStoreContext);
+  const {ProgramsStore} = useContext(MainStoreContext);
 
   const [isActiveCard, setStateCard] = useState(true);
+  const [status, setStatus] = useState(false);
 
   useEffect(() => {
     (async() => {
 
       try {
         await ProgramsStore.getAreas();   
-        await ProgramsStore.getPrograms();             
+        await ProgramsStore.getPrograms();
+        await setStatus(true);          
       } catch (error) {
           setStateCard(false);
       }
@@ -54,6 +56,7 @@ const AllPrograms = observer((props) => {
   )
 
   return (
+    status ?
     <div>
       {
         isActiveCard ?
@@ -65,6 +68,10 @@ const AllPrograms = observer((props) => {
             <NotFound />
           </div>
       }
+    </div>
+    :
+    <div className={css.all_programs}>
+      <Loading />
     </div>
   );
 });

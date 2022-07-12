@@ -5,6 +5,7 @@ export class ProgramsStore {
   programs = [];
   program = [];
   allprograms = [];
+  resStatus = null;
   isFinishedDelete = false;
   isFinishedUpdate = false;
 
@@ -27,8 +28,11 @@ export class ProgramsStore {
     this.programs = [];
     this.program = [];
     this.allprograms = [];
+    this.resStatus = null;
   }
 
+
+  //       GET
   async getAreas() {
     try {
       const response = await fetch(
@@ -95,6 +99,27 @@ export class ProgramsStore {
     }
   }
 
+  //       POST
+  async buyProgram(id) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/studentsPrograms`,
+        {
+          method: 'POST',
+          body: JSON.stringify({id}),
+          headers: {
+            "Authorization": `Bearer ${this.AuthStore.token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+        this.resStatus = await response.status;
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
+  
+  //      DELETE
   async deleteProgram(id) {
     try {
       const response = await fetch(
@@ -108,11 +133,13 @@ export class ProgramsStore {
           }
         }
       );
+
     } catch (e) {
       throw new Error(e.message);
     }
   }
 
+  //       PUT
   async updateProgram(id) {
     try {
       const response = await fetch(

@@ -1,6 +1,7 @@
 .all_programs {
   font-family: "Montserrat";
   font-size: 20px;
+  min-height: 100vh;
 }
 
 .program_block {

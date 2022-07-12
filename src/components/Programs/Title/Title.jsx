@@ -1,7 +1,6 @@
 import css from "./Title.module.css";
 import { observer } from "mobx-react-lite";
 import { useEffect, useContext } from "react";
-// import programs from "../../../store/programsStore";
 import {MainStoreContext} from "../../../store/mainStore";
 
 const Title = observer((props) => {

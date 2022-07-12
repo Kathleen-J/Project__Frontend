@@ -1,28 +1,31 @@
 import css from "./MyPrograms.module.css";
 import { Accordion } from "react-bootstrap";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import {MainStoreContext} from "../../../../store/mainStore";
+import Loading from "../../../secondary/Loading/Loading";
 
 const MyPrograms = observer(() => {
   
   const {UsersStore, studentsProgramsStore, curatorsDisciplinesStore, ProgramsStore} = useContext(MainStoreContext);
-
-    useEffect(() => {
-        (async() => {
-    
-          if(!studentsProgramsStore.getMyPrograms.length) {
-            await studentsProgramsStore.getMyPrograms();
-          }
+  const [status, setStatus] = useState(false);
+  
+  useEffect(() => {
+    (async() => {
+      
+      if(!studentsProgramsStore.getMyPrograms.length) {
+        await studentsProgramsStore.getMyPrograms();
+        await setStatus(true);
+      }
           
         })();
       }, [
-        UsersStore.statusStudent, 
-        UsersStore.statusCurator, 
-        studentsProgramsStore.statusProgram, 
-        curatorsDisciplinesStore.statusDiscipline, 
-        ProgramsStore.isFinishedDelete, 
-        ProgramsStore.isFinishedUpdate
+          UsersStore.statusStudent, 
+          UsersStore.statusCurator, 
+          studentsProgramsStore.statusProgram, 
+          curatorsDisciplinesStore.statusDiscipline, 
+          ProgramsStore.isFinishedDelete, 
+          ProgramsStore.isFinishedUpdate
       ]
     );
       
@@ -136,6 +139,7 @@ const MyPrograms = observer(() => {
     ));
 
   return (
+    status ?
     <div className={css.wrapper}>
 
       <div>Активные программы</div>
@@ -153,6 +157,8 @@ const MyPrograms = observer(() => {
       }
 
     </div>
+    :
+    <Loading />
   );
 });
 

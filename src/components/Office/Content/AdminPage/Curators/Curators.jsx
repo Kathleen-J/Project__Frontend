@@ -3,6 +3,7 @@ import {Accordion} from 'react-bootstrap';
 import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import {MainStoreContext} from "../../../../../store/mainStore";
+import Loading from "../../../../secondary/Loading/Loading";
 
 const Curators = observer(() => {
   
@@ -11,20 +12,22 @@ const Curators = observer(() => {
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
   let [statusBtn, changeStatusBtn] = useState(true);
+  const [status, setStatus] = useState(false);
 
-  useEffect(() => {
-    (async() => {
-
-      if(!UsersStore.getCurators.length) {
-        await UsersStore.getCurators();
-      }
+useEffect(() => {
+  (async() => {
+    
+    if(!UsersStore.getCurators.length) {
+      await UsersStore.getCurators();
+      await setStatus(true);
+    }
   
-      if(!curatorsDisciplinesStore.getCuratorsOfDisciplines.length) {
-        await curatorsDisciplinesStore.getCuratorsOfDisciplines();
-      }
-      
-    })();
-  }, [UsersStore.statusCurator, curatorsDisciplinesStore.statusDiscipline]);
+    if(!curatorsDisciplinesStore.getCuratorsOfDisciplines.length) {
+      await curatorsDisciplinesStore.getCuratorsOfDisciplines();
+    }
+    
+  })();
+}, [UsersStore.statusCurator, curatorsDisciplinesStore.statusDiscipline]);
 
   const card = UsersStore.curators.map((curator) => 
     <div className={css.card} key={curator.id}>
@@ -195,6 +198,7 @@ const Curators = observer(() => {
   )
 
   return (
+    status ?    
     <div className={css.wrapper}>
       
       <div className={`${css.createBtn} ${statusBtn ? '' : css.closed}`} onClick={() => changeStatusBtn(prevState => !prevState)}>Создать нового куратора</div>
@@ -247,6 +251,8 @@ const Curators = observer(() => {
       </Accordion>
 
     </div>
+    :
+    <Loading />
   );
 });
 

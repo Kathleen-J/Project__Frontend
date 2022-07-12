@@ -19,7 +19,8 @@ export class curatorsDisciplinesStore {
     this.curators_of_disciplines = [];
     this.curators = [];
   }
-  
+
+  //       GET
   async getCuratorsOfDisciplines() {
     try {
       const response = await fetch(
@@ -39,8 +40,9 @@ export class curatorsDisciplinesStore {
     } catch (e) {
       throw new Error(e.message);
     }
-  }
-
+  }    
+  
+  //      DELETE 
   async deleteCuratorsDiscipline(id) {
     try {
       const response = await fetch(
@@ -58,7 +60,8 @@ export class curatorsDisciplinesStore {
       throw new Error(e.message);
     }
   }
-
+  
+  //       PUT
   async updateCuratorsDiscipline(id) {
     try {
       const response = await fetch(

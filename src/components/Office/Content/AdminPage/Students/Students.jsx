@@ -3,6 +3,7 @@ import {Accordion} from 'react-bootstrap';
 import {MainStoreContext} from "../../../../../store/mainStore";
 import React, { useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
+import Loading from "../../../../secondary/Loading/Loading";
 
 const Students = observer(() => {
 
@@ -11,10 +12,11 @@ const Students = observer(() => {
   let loginInput = React.createRef();
   let passwordInput = React.createRef();
   let [statusBtn, changeStatusBtn] = useState(true);
+  const [status, setStatus] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
     (async() => {
-
+      
       try {
         if(!UsersStore.getStudents.length) {
           await UsersStore.getStudents();
@@ -22,6 +24,7 @@ const Students = observer(() => {
         
         if(!studentsProgramsStore.getStudentsPrograms.length) {
           await studentsProgramsStore.getStudentsPrograms();
+          await setStatus(true);
         }
 
       } catch (error) {
@@ -233,6 +236,7 @@ const Students = observer(() => {
 
 
   return (
+    status ?
     <div className={css.wrapper}>
 
       <div className={`${css.createBtn} ${statusBtn ? '' : css.closed}`} onClick={() => changeStatusBtn(prevState => !prevState)}>Создать нового студента</div>
@@ -286,6 +290,8 @@ const Students = observer(() => {
 
 
     </div>
+    :
+    <Loading />
   );
 });
 
