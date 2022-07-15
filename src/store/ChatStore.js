@@ -10,7 +10,9 @@ export class ChatStore {
     constructor(AuthStore) {
         makeAutoObservable(this);
         this.AuthStore = AuthStore;
-        this.socket = io();
+        this.socket = io('', {
+            transports: ['websocket']
+        });
         this.socket.on("chat message", (message) => {
             const data = JSON.parse(message);
             this.setMessages(data);

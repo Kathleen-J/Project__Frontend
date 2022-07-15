@@ -28,7 +28,7 @@ export class studentsProgramsStore {
   async getStudentsPrograms() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/studentsPrograms?status=all",
+        "/api/studentsPrograms?status=all",
          {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -49,7 +49,7 @@ export class studentsProgramsStore {
   async getMyProgram(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/studentsPrograms/${id}`,
+        `/api/studentsPrograms/${id}`,
          {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -70,7 +70,7 @@ export class studentsProgramsStore {
   async getMyPrograms() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/studentsPrograms",
+        "/api/studentsPrograms",
          {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -92,7 +92,7 @@ export class studentsProgramsStore {
   async deleteStudentsEducationPrograms(id, value) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/studentsPrograms/${id}`,
+        `/api/studentsPrograms/${id}`,
         {
           method: 'DELETE',
           body: JSON.stringify({id, value}),
@@ -111,7 +111,7 @@ export class studentsProgramsStore {
   async updateStudentsEducationPrograms(id, value) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/studentsPrograms/${id}`,
+        `/api/studentsPrograms/${id}`,
         {
           method: 'PUT',
           body: JSON.stringify({id, value}),
@@ -129,7 +129,7 @@ export class studentsProgramsStore {
   async sendTestResult(id, value) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/studentsPrograms`,
+        `/api/studentsPrograms`,
         {
           method: 'PUT',
           body: JSON.stringify({id, value}),

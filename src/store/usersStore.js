@@ -53,7 +53,7 @@ export class UsersStore {
   async getStatusUser() {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${this.AuthStore.idUser}`,
+        `/api/users/${this.AuthStore.idUser}`,
         {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -74,7 +74,7 @@ export class UsersStore {
   async getStudents() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/users/students?status=all",
+        "/api/users/students?status=all",
         {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -96,7 +96,7 @@ export class UsersStore {
   async getCurators() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/users/curators?status=all",
+        "/api/users/curators?status=all",
         {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -117,7 +117,7 @@ export class UsersStore {
   async getMyStudents() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/users/students",
+        "/api/users/students",
         {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -139,7 +139,7 @@ export class UsersStore {
   async createUser(role, login, password) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users`,
+        `/api/users`,
         {
           method: 'POST',
           body: JSON.stringify({role, login, password}),
@@ -162,7 +162,7 @@ export class UsersStore {
   async deleteUser(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${id}`,
+        `/api/users/${id}`,
         {
           method: 'DELETE',
           body: JSON.stringify({id}),
@@ -181,7 +181,7 @@ export class UsersStore {
   async updateUser(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${id}`,
+        `/api/users/${id}`,
         {
           method: 'PUT',
           body: JSON.stringify({id}),
@@ -199,7 +199,7 @@ export class UsersStore {
   async updateUserLogin(id, login) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${id}`,
+        `/api/users/${id}`,
         {
           method: 'PUT',
           body: JSON.stringify({id, login}),
@@ -217,7 +217,7 @@ export class UsersStore {
   async updateUserPassword(id, password) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${id}`,
+        `/api/users/${id}`,
         {
           method: 'PUT',
           body: JSON.stringify({id, password}),

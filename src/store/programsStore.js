@@ -36,7 +36,7 @@ export class ProgramsStore {
   async getAreas() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/areas"
+        "/api/areas"
       );
       const area = await response.json();
 
@@ -51,7 +51,7 @@ export class ProgramsStore {
   async getPrograms() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/programs"
+        "/api/programs"
       );
       const program = await response.json();
 
@@ -66,7 +66,7 @@ export class ProgramsStore {
   async getProgram(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/programs/${id}`
+        `/api/programs/${id}`
       );
       const program_result = await response.json();
 
@@ -81,7 +81,7 @@ export class ProgramsStore {
   async getAllPrograms() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/programs/all/programs",
+        "/api/programs/all/programs",
         {          
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -103,7 +103,7 @@ export class ProgramsStore {
   async buyProgram(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/studentsPrograms`,
+        `/api/studentsPrograms`,
         {
           method: 'POST',
           body: JSON.stringify({id}),
@@ -123,7 +123,7 @@ export class ProgramsStore {
   async deleteProgram(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/programs/${id}`,
+        `/api/programs/${id}`,
         {
           method: 'DELETE',
           body: JSON.stringify({id}),
@@ -142,7 +142,7 @@ export class ProgramsStore {
   async updateProgram(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/programs/${id}`,
+        `/api/programs/${id}`,
         {
           method: 'PUT',
           body: JSON.stringify({id}),

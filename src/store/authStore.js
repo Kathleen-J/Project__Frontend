@@ -24,7 +24,7 @@ export class AuthStore {
     async getToken(login, password) {
         try {
             const response = await fetch(
-                'http://localhost:3001/api/auth/token',
+                '/api/auth/token',
                 {
                     method: 'POST',
                     headers: {
@@ -47,7 +47,7 @@ export class AuthStore {
 
     async getNewToken(login) {
         const response = await fetch(
-            'http://localhost:3001/api/auth/new-token',
+            '/api/auth/new-token',
             {
                 method: 'POST',
                 headers: {

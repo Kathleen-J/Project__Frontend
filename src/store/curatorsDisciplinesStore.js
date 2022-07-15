@@ -24,7 +24,7 @@ export class curatorsDisciplinesStore {
   async getCuratorsOfDisciplines() {
     try {
       const response = await fetch(
-        "http://localhost:3001/api/curatorsDisciplines?status=all",
+        "/api/curatorsDisciplines?status=all",
         {
           headers: {
             "Authorization": `Bearer ${this.AuthStore.token}`,
@@ -46,7 +46,7 @@ export class curatorsDisciplinesStore {
   async deleteCuratorsDiscipline(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/curatorsDisciplines/${id}`,
+        `/api/curatorsDisciplines/${id}`,
         {
           method: 'DELETE',
           body: JSON.stringify({id}),
@@ -65,7 +65,7 @@ export class curatorsDisciplinesStore {
   async updateCuratorsDiscipline(id) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/curatorsDisciplines/${id}`,
+        `/api/curatorsDisciplines/${id}`,
         {
           method: 'PUT',
           body: JSON.stringify({id}),
