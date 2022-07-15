@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# SKILLFOX
+Проект “Образовательный портал”
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Основная идея
 
-In the project directory, you can run:
+  Платформа для преподавателей и учеников, предлагающая образовательные программы по различным направлениям.
+  
+  Сервис позволяет преподавателям курировать своих учеников.
+  Для студентов портал предоставляет доступ к обучающим материалам. При положительных результатах тестирования (от 80 баллов) выдается сертификат о прохождении курса либо диплом о профессиональной переподготовке в зависимости от формы обучения программы. При отрицательных результатах выдается справка.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Функционал
 
-### `npm test`
+  1.	3 уровня доступа к платформе (4, с учетом неавторизованного пользователя).
+  2.	Для любого авторизованного пользователя:
+    a.	Смена логина / пароля в личном кабинете
+    b.	Доступ к чату
+  3.	Для ученика: 
+    a.	Приобретение образовательных программ
+    b.	Доступ к обучающим материалам, отсортированных на активные и завершенные.
+    c.	Тестирование
+    d.	Чат
+  4.	Для куратора:
+    a.	Привязаны к дисциплинам, а не к конкретным программам.
+    b.	Список своих студентов
+    c.	Чат
+  5.	Для администратора
+    a.	Редактирование личных данных пользователей (смена логина / пароля) 
+    b.	Управление статусом пользователей (блокировка / разблокировка)
+    c.	Управление статусом приобретенных программ учеников (заблокировать / разблокировать, завершить / отменить завершение)
+    d.	Блокировать / восстанавливать доступ к дисциплинам конкретным кураторам
+    e.	Управление статусом программ, доступных для приобретения на сайте.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Дополнительно:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.	Заблокированные администратором программы становятся недоступны для приобретения. 
+    Если ранее программа была приобретена студентом, доступ к ней в личном кабинете студента останется.
+2.	Заблокированным пользователям доступ в личный кабинет закрыт.
+3.	После приобретения программы кнопка «купить» изменится на «приобретено».
+4.	В личном кабинете отображение логина пользователя осуществляется посредством расшифровки токена. 
+    При изменении логина отправляется запрос в БД на обновление данных, затем на получение обновленного токена.
+5.	После прохождения теста статус курса меняется на «завершенный». Доступ к материалам программы становится недоступным.
+6.	Администратор может изменить статус программы с «завершенной» на «незавершенную», чтобы появилась возможность пересдать тест. 
+    Если результат пересдачи хуже прошлого, сохранится старый результат, если лучше – результат перезапишется. 
+    Программа при любом исходе перейдет в статус «завершенные».
+7.	Несколько кураторов могут быть прикреплены к одной дисциплине. 
+    При блокировке куратора, если помимо него нет других активных по какой-то конкретной дисциплине, 
+    у студентов в поле «куратор» отобразится вместо логина «не назначен».
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
