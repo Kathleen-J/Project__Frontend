@@ -125,5 +125,23 @@ export class studentsProgramsStore {
       throw new Error(e.message);
     }
   }
+
+  async sendTestResult(id, value) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/studentsPrograms`,
+        {
+          method: 'PUT',
+          body: JSON.stringify({id, value}),
+          headers: {
+            "Authorization": `Bearer ${this.AuthStore.token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
   
 }

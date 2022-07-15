@@ -22,27 +22,27 @@ export class AuthStore {
     }
 
     async getToken(login, password) {
-        const response = await fetch(
-            'http://localhost:3001/api/auth/token',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({login, password})
-            }
-        )
-        
-        if(response.status > 400) {
-            console.log('error');
-            return;
+        try {
+            const response = await fetch(
+                'http://localhost:3001/api/auth/token',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({login, password})
+                }
+            )
+    
+            const {token} = await response.json();
+            
+            runInAction(() => {
+                this.token = token;
+                this.decodeData();
+            });            
+        } catch (error) {
+            throw new Error('wrong password / login')
         }
-
-        const {token} = await response.json();
-        
-        runInAction(() => {
-            this.token = token;
-        });
     }
 
     async getNewToken(login) {
@@ -68,16 +68,18 @@ export class AuthStore {
         runInAction(() => {
             localStorage.setItem('token', token);
             this.token = token;
+            this.decodeData();
         });
     }
 
-
     decodeData() {
-        const [, decodedPayload, ] = this.token.split('.');
-        const payload = JSON.parse(window.atob(decodedPayload));
-        this.loginUser = payload.login;
-        this.idUser = payload.id;
-        this.roleUser = payload.role;
+        if(this.isLoggedIn) {            
+            const [, decodedPayload, ] = this.token.split('.');
+            const payload = JSON.parse(window.atob(decodedPayload));
+            this.loginUser = payload.login;
+            this.idUser = payload.id;
+            this.roleUser = payload.role;
+        }
     }
     
     logOut() {

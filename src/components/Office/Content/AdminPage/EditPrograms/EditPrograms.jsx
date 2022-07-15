@@ -12,9 +12,11 @@ const EditPrograms = observer(() => {
 useEffect(() => {
     (async() => {
         
-        if(!ProgramsStore.allprograms.length) {
+        try{
             await ProgramsStore.getAllPrograms();
-            await setStatus(true);
+            setStatus(true);
+          }catch (e) {
+            console.log(e.message);
           }
           
         })();
@@ -50,16 +52,16 @@ useEffect(() => {
                     if(event.target.value === 'status__active') 
                         {
                             ProgramsStore.deleteProgram(event.target.id)
-                            .then(ProgramsStore.changeIsFinishedDelete())
-                            .then(ProgramsStore.getAllPrograms())
-                            .then(ProgramsStore.getPrograms())
+                            ProgramsStore.changeIsFinishedDelete()
+                            ProgramsStore.getAllPrograms()
+                            ProgramsStore.getPrograms()
                         } 
                     else if(event.target.value === 'status__deleted')
                         {
                             ProgramsStore.updateProgram(event.target.id)
-                            .then(ProgramsStore.changeIsFinishedUpdate())
-                            .then(ProgramsStore.getAllPrograms())
-                            .then(ProgramsStore.getPrograms())
+                            ProgramsStore.changeIsFinishedUpdate()
+                            ProgramsStore.getAllPrograms()
+                            ProgramsStore.getPrograms()
                         }}}
             >
                 {program.status === 'active' ? 'Заблокировать' : 'Разблокировать'}

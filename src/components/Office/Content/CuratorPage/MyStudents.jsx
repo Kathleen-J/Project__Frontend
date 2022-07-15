@@ -13,8 +13,12 @@ useEffect(() => {
   (async() => {
     
     if(!UsersStore.getMyStudents.length) {
-      await UsersStore.getMyStudents();
-      await setStatus(true);
+      try {        
+        await UsersStore.getMyStudents();
+        await setStatus(true);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
           
       })();
@@ -34,7 +38,6 @@ useEffect(() => {
         <thead>
           <tr className={css.title_block}>
             <th className={`${css.title} ${css.title_left}`}>Логин студента</th>
-            <th className={css.title}>Форма обучения</th>
             <th className={css.title}>Программа</th>
             <th className={`${css.title} ${css.title_rigth}`}>Дата начала обучения</th>
           </tr>
@@ -42,9 +45,11 @@ useEffect(() => {
         <tbody>
           <tr className={css.cells}>
             <td className={`${css.cell} ${css.cell_left}`}>{student.login}</td>
-            <td className={css.cell}>{student.education_form}</td>
             <td className={css.cell}>
-              {student.education_area}: {student.profile}
+              <div>                    
+                {student.education_form} по направлению: {student.education_area.toLowerCase()}
+              </div>
+              {student.discipline}: {student.profile}
             </td>
             <td className={`${css.cell} ${css.cell_right}`}>
               {new Date(student.purchase_date).toDateString().slice(4)}
@@ -52,16 +57,16 @@ useEffect(() => {
           </tr>
         </tbody>
       </table>
-      <button className={css.status}>Связаться</button>
     </div>
   ));
 
   return (
     status ?
     <div className={css.wrapper}>
+      <div className={css.header}>Мои студенты</div>
       {myStudents?.length ?
         <div>{myStudents}</div> :
-        <div>У вас нет студентов</div>
+        <div className={css.description}>У вас нет студентов</div>
       }
     </div>
     :

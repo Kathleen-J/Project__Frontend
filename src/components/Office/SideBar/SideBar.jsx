@@ -24,14 +24,15 @@ const SideBar = observer(() => {
         <div className={css.nav}>
           <NavLink to="/office/profile" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Профиль</NavLink>
           <NavLink to="/office/my-programs" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Мои программы</NavLink>
+          <NavLink to="/office/chat" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Чат</NavLink>
         </div>
       }
       {
         AuthStore.roleUser === 'curator' &&
         <div className={css.nav}>
           <NavLink to="/office/profile" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Профиль</NavLink>
-          <NavLink to="/office/my-programs" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Мои программы</NavLink>
           <NavLink to="/office/my-students" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Мои студенты</NavLink>
+          <NavLink to="/office/chat" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Чат</NavLink>
         </div>
       }
       {
@@ -42,6 +43,7 @@ const SideBar = observer(() => {
           <NavLink to="/office/students" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Студенты</NavLink>
           <NavLink to="/office/curators" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Кураторы</NavLink>
           <NavLink to="/office/edit-programs" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Все программы</NavLink>
+          <NavLink to="/office/chat" className={css.link} onClick={() => {window.scrollTo(0, 0)}}>Чат</NavLink>
         </div>
       }
     </div>

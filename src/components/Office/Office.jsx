@@ -6,9 +6,10 @@ import SideBar from "./SideBar/SideBar";
 import EditPrograms from "./Content/AdminPage/EditPrograms/EditPrograms";
 import Students from "./Content/AdminPage/Students/Students";
 import Curators from "./Content/AdminPage/Curators/Curators";
-import MyPrograms from "./Content/MyPrograms/MyPrograms";
+import MyPrograms from "./Content/StudentPage/MyPrograms";
 import Profile from "./Content/Profile/Profile";
 import MyStudents from "./Content/CuratorPage/MyStudents";
+import Chat from "./Content/Chat/Chat";
 import Loading from '../secondary/Loading/Loading';
 import NotFound from '../secondary/NotFound/NotFound';
 import { observer } from 'mobx-react-lite';
@@ -41,6 +42,7 @@ const Office = observer(() => {
           <Routes>
             <Route exact='true' path="/profile" element={<Suspense fallback={<Loading />}> <Profile /> </Suspense>} />
             <Route path="/my-programs" element={<MyPrograms />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
@@ -50,8 +52,8 @@ const Office = observer(() => {
         <div className={css.content}>
           <Routes>
             <Route exact='true' path="/profile" element={<Suspense fallback={<Loading />}> <Profile /> </Suspense>} />
-            <Route path="/my-programs" element={<MyPrograms />} />
             <Route path="/my-students" element={<MyStudents />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
@@ -65,6 +67,7 @@ const Office = observer(() => {
             <Route path="/students" element={<Students />} />
             <Route path="/edit-programs" element={<EditPrograms />} />
             <Route path="/curators" element={<Curators />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
        </div>

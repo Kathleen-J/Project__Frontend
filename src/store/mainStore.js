@@ -4,6 +4,7 @@ import {curatorsDisciplinesStore} from './curatorsDisciplinesStore';
 import {ProgramsStore} from './programsStore';
 import {studentsProgramsStore} from './studentsProgramsStore';
 import {UsersStore} from './usersStore';
+import {ChatStore} from './ChatStore';
 
 export const MainStoreContext = createContext(null);
 
@@ -14,5 +15,6 @@ export class MainStore {
         this.ProgramsStore = new ProgramsStore(this.AuthStore);
         this.studentsProgramsStore = new studentsProgramsStore(this.AuthStore);
         this.UsersStore = new UsersStore(this.AuthStore);
+        this.ChatStore = new ChatStore(this.AuthStore); 
     }
 }

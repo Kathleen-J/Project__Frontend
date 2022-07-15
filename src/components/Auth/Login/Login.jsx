@@ -13,7 +13,7 @@ const Login = observer(() => {
 
   return (
     <div className={"modalWindow"}>
-      <form action="" method="post" className={style.modal}>
+      <div className={style.modal}>
         <div className={css.form}>
           <input 
             ref={loginInput}
@@ -53,7 +53,7 @@ const Login = observer(() => {
             Зарегистрироваться
           </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 });

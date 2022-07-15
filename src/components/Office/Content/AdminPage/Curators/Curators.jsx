@@ -53,14 +53,14 @@ useEffect(() => {
                       {if(e.target.value === 'status__active') 
                         {
                           UsersStore.deleteUser(e.target.id)
-                          .then(UsersStore.changestatusCurator())
-                          .then(UsersStore.getCurators());
+                          UsersStore.changestatusCurator()
+                          UsersStore.getCurators()
                         } 
                       else if (e.target.value === 'status__deleted') 
                         {
                           UsersStore.updateUser(e.target.id)
-                          .then(UsersStore.changestatusCurator())
-                          .then(UsersStore.getCurators());
+                          UsersStore.changestatusCurator()
+                          UsersStore.getCurators()
                         }}}>
                   {curator.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
                 </button>
@@ -171,14 +171,14 @@ useEffect(() => {
                                               {if(e.target.value === 'status__active') 
                                                 {
                                                   curatorsDisciplinesStore.deleteCuratorsDiscipline(e.target.id)
-                                                  .then(curatorsDisciplinesStore.changeStatusDiscipline())
-                                                  .then(curatorsDisciplinesStore.getCuratorsOfDisciplines())
+                                                  curatorsDisciplinesStore.changeStatusDiscipline()
+                                                  curatorsDisciplinesStore.getCuratorsOfDisciplines()
                                                 } 
                                               else if (e.target.value === 'status__deleted') 
                                                 {
                                                   curatorsDisciplinesStore.updateCuratorsDiscipline(e.target.id)
-                                                  .then(curatorsDisciplinesStore.changeStatusDiscipline())
-                                                  .then(curatorsDisciplinesStore.getCuratorsOfDisciplines())
+                                                  curatorsDisciplinesStore.changeStatusDiscipline()
+                                                  curatorsDisciplinesStore.getCuratorsOfDisciplines()
                                                 }}}
                                           >
                                             {discipline.status === 'active' ? 'Заблокировать' : 'Разблокировать'}

@@ -57,13 +57,13 @@ useEffect(() => {
                       onClick={(e) => 
                         {if(e.target.value === 'status__active') {
                           UsersStore.deleteUser(e.target.id) 
-                          .then(UsersStore.changestatusStudent())
-                          .then(UsersStore.getStudents());
+                          UsersStore.changestatusStudent()
+                          UsersStore.getStudents()
                         }
                         else if (e.target.value === 'status__deleted') {
                           UsersStore.updateUser(e.target.id)
-                          .then(UsersStore.changestatusStudent())
-                          .then(UsersStore.getStudents());
+                          UsersStore.changestatusStudent()
+                          UsersStore.getStudents()
                         }}}>
                     {student.status === 'active' ? 'Заблокировать' : 'Разблокировать'}
                   </button>
@@ -102,9 +102,9 @@ useEffect(() => {
                           onClick={(e) => 
                             {
                               UsersStore.updateUserLogin(e.target.id, loginInput.current.value)
-                              .then(UsersStore.cleanLoginValue())
-                              .then(UsersStore.changestatusStudent())
-                              .then(UsersStore.getStudents())
+                              UsersStore.cleanLoginValue()
+                              UsersStore.changestatusStudent()
+                              UsersStore.getStudents()
                             }
                           }
                         >
@@ -136,9 +136,9 @@ useEffect(() => {
                         onClick={(e) => 
                           {
                             UsersStore.updateUserPassword(e.target.id, passwordInput.current.value)
-                            .then(UsersStore.cleanPasswordValue())
-                            .then(UsersStore.changestatusStudent())
-                            .then(UsersStore.getStudents())
+                            UsersStore.cleanPasswordValue()
+                            UsersStore.changestatusStudent()
+                            UsersStore.getStudents()
                           }
                         }
                       >
@@ -182,14 +182,14 @@ useEffect(() => {
                                             {if(e.target.value === 'unfinished') 
                                               {
                                                 studentsProgramsStore.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                                .then(studentsProgramsStore.changeStatusProgram())
-                                                .then(studentsProgramsStore.getStudentsPrograms())
+                                                studentsProgramsStore.changeStatusProgram()
+                                                studentsProgramsStore.getStudentsPrograms()
                                               } 
                                             else if (e.target.value === 'finished') 
                                               {
                                                 studentsProgramsStore.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                                .then(studentsProgramsStore.changeStatusProgram())
-                                                .then(studentsProgramsStore.getStudentsPrograms())
+                                                studentsProgramsStore.changeStatusProgram()
+                                                studentsProgramsStore.getStudentsPrograms()
                                               }
                                             }
                                           }
@@ -206,14 +206,14 @@ useEffect(() => {
                                           {if(e.target.value === 'active') 
                                             {
                                               studentsProgramsStore.deleteStudentsEducationPrograms(e.target.id, e.target.value)
-                                              .then(studentsProgramsStore.changeStatusProgram())
-                                              .then(studentsProgramsStore.getStudentsPrograms())
+                                              studentsProgramsStore.changeStatusProgram()
+                                              studentsProgramsStore.getStudentsPrograms()
                                             } 
                                           else if (e.target.value === 'deleted') 
                                             {
                                               studentsProgramsStore.updateStudentsEducationPrograms(e.target.id, e.target.value)
-                                              .then(studentsProgramsStore.changeStatusProgram())
-                                              .then(studentsProgramsStore.getStudentsPrograms())
+                                              studentsProgramsStore.changeStatusProgram()
+                                              studentsProgramsStore.getStudentsPrograms()
                                             }
                                           }
                                         }

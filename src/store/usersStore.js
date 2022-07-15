@@ -148,8 +148,13 @@ export class UsersStore {
           }
         }
       );
+      if(response.status >= 400) {
+        alert('такой пользователь существует');
+      } else {
+        alert('Успешно!')
+      }
     } catch (e) {
-      throw new Error(e.message);
+      throw new Error(e.message)
     }
   }
   

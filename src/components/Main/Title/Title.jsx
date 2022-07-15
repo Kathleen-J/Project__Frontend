@@ -7,8 +7,8 @@ const Title = () => {
         <p className={css.education_online}>ОНЛАЙН ОБУЧЕНИЕ</p>
         <div className={css.description}>          
           <p className={`${css.education} ${css.description_three}`}>Учитесь</p>
-          <p className={`${css.education} ${css.description_one}`}>в <span> удобное </span> для</p>
-          <p className={`${css.education} ${css.description_two}`}>вас <span> время</span></p>
+          <p className={`${css.education} ${css.description_one}`}>в <span className={css.span}> удобное </span> для</p>
+          <p className={`${css.education} ${css.description_two}`}>вас <span className={css.span}> время</span></p>
         </div>
         <p className={`${css.skillfox} ${css.description}`}>вместе со SkillFox</p>
       </div>

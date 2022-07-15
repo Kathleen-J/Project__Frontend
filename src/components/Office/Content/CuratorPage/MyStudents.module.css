@@ -11,10 +11,24 @@
     border: 2px solid #535353;
     box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
     background-color: #ffd44a87;
-    margin: 25px 40px;
+    margin: 30px 40px;
     padding: 13px;
+    padding-bottom: 25px;
+  }
+
+  .header{
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
   }
   
+  .description {
+    margin-top: 70px;
+    text-align: center;
+    font-size: 17px;
+  }
+
   .table {
     border-collapse: collapse;
     width: 100%;
@@ -31,18 +45,19 @@
     border-left: 1px solid grey;
     border-right: 1px solid grey;
     padding: 10px;
-    width: 25%;
     font-weight: 400;
   }
   
   .title_left,
   .cell_left {
+    width: 20%;
     border-left: 0px;
   }
   
   .title_rigth,
   .cell_right {
     border-right: 0px;
+    width: 30%;
   }
   
   .status {

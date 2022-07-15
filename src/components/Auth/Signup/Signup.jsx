@@ -46,7 +46,6 @@ const SignUp = observer(() => {
               onClick={(e) => 
                 {
                   AuthStore.getToken(loginInput.current.value, passwordInput.current.value)
-                  // .then(() => AuthStore.decodeData())
                   .then(() => AuthStore.isLoggedIn ? navigate("/office/profile") : (alert('Неверный логин или пароль')));
                   UsersStore.cleanLoginValue();
                   UsersStore.cleanPasswordValue();

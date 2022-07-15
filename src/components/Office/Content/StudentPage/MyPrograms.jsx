@@ -9,6 +9,18 @@ const MyPrograms = observer(() => {
   
   const {UsersStore, studentsProgramsStore, curatorsDisciplinesStore, ProgramsStore} = useContext(MainStoreContext);
   const [status, setStatus] = useState(false);
+
+  function promptResult(id, value){
+    let result = prompt("введите количество баллов", '');
+    if(value <= result) {
+      studentsProgramsStore.sendTestResult(id, result)
+      studentsProgramsStore.changeStatusProgram()
+    } else {
+      studentsProgramsStore.deleteStudentsEducationPrograms(id)
+      studentsProgramsStore.changeStatusProgram()
+      alert ('Старый результат выше текущего. Результат останется прежним');
+    }
+}
   
   useEffect(() => {
     (async() => {
@@ -37,8 +49,7 @@ const MyPrograms = observer(() => {
           <table className={css.table}>
             <thead>
               <tr className={css.title_block}>
-                <th className={`${css.title} ${css.title_left}`}>Форма обучения</th>
-                <th className={`${css.title} ${css.title_two}`}>Программа</th>
+                <th className={`${css.title} ${css.title_left}`}>Программа</th>
                 <th className={`${css.title} ${css.title_three}`}>Дата начала обучения</th>
                 <th className={`${css.title} ${css.title_rigth}`}>Куратор</th>
               </tr>
@@ -46,10 +57,10 @@ const MyPrograms = observer(() => {
             <tbody>
               <tr className={css.cells}>
                 <td className={`${css.cell} ${css.cell_left}`}>
-                  {student.education_form}
-                </td>
-                <td className={css.cell}>
-                  {student.education_area}: {student.profile}
+                  <div>                    
+                    {student.education_form} по направлению: {student.education_area.toLowerCase()}
+                  </div>
+                  {student.discipline}: {student.profile}
                 </td>
                 <td className={css.cell}>
                   {new Date(student.purchase_date).toDateString().slice(4)}
@@ -60,33 +71,26 @@ const MyPrograms = observer(() => {
               </tr>
             </tbody>
           </table>
-          <div className='buttons'>            
-            <Accordion.Header>
-              Содержание программы
+            <Accordion.Header className="buttons">
+              Содержание
             </Accordion.Header>
-            {
-              student.status_curator === 'active' && student.status_curator_user === 'active' ? 
-              (
-                  <button className={`${css.status} accordion-button`} id={student.id}>
-                      Связаться
-                  </button>
-              ) 
-              : 
-              (
-                  ""
-              )
-            }
-          </div>
           <Accordion.Body>
             <div className={css.options}>
               <div className={css.programs}>
-                <div className={css.programs_title}>Модули</div>
-                <div className={css.program_tablee}>
-                  <div>Модуль 1: введение в предмет</div>
-                  <div>Модуль 2: основы</div>
-                  <div>Модуль 3: углубленный уровень</div>
+                <div className={css.module_title}>Модули</div>
+                <div className={css.modules}>
+                  <div className={css.module}>Модуль 1: введение в предмет</div>
+                  <div className={css.module}>Модуль 2: основы</div>
+                  <div className={css.module}>Модуль 3: углубленный уровень</div>
                 </div>
-                <button className={css.status}>Сдать тест</button>
+                <button
+                  id={student.id}
+                  className={css.status}
+                  value={student.test_results}
+                  onClick={(e) => {promptResult(e.target.id, e.target.value)}}
+                >
+                  Сдать тест
+                </button>
               </div>
             </div>
           </Accordion.Body>
@@ -102,8 +106,7 @@ const MyPrograms = observer(() => {
           <table className={css.table}>
             <thead>
               <tr className={css.title_block}>
-                <th className={`${css.title} ${css.title_left}`}>Форма обучения</th>
-                <th className={`${css.title} ${css.title_two}`}>Программа</th>
+                <th className={`${css.title} ${css.title_left}`}>Программа</th>
                 <th className={`${css.title} ${css.title_three}`}>Дата завершения обучения</th>
                 <th className={`${css.title} ${css.title_rigth}`}>Результат теста</th>
               </tr>
@@ -111,11 +114,11 @@ const MyPrograms = observer(() => {
             <tbody>
               <tr className={css.cells}>
                 <td className={`${css.cell} ${css.cell_left}`}>
-                  {student.education_form}
-                </td>
-                <td className={css.cell}>
-                  {student.education_area}: {student.profile}
-                </td>
+                  <div>                    
+                      {student.education_form} по направлению: "{student.education_area.toLowerCase()}".
+                    </div>
+                    {student.discipline}: {student.profile}
+                  </td>
                 <td className={css.cell}>
                   {student.test_finished_at ? new Date(student.test_finished_at).toDateString().slice(4) : '-'}
                 </td>
@@ -142,18 +145,18 @@ const MyPrograms = observer(() => {
     status ?
     <div className={css.wrapper}>
 
-      <div>Активные программы</div>
+      <div className={css.header}>Активные программы</div>
       {
         cardUnfinished?.length ?
-          <Accordion>{cardUnfinished}</Accordion> :
-          <div>Нет активных программ</div>
+        <Accordion>{cardUnfinished}</Accordion> :
+        <div className={css.description}>Нет активных программ</div>
       }
 
-        <div>Завершенные программы</div>
-        {
+      <div className={css.header_bottom}>Завершенные программы</div>
+      {
         cardFinished?.length ?
-          <Accordion>{cardFinished}</Accordion> :
-          <div>Нет завершенных программ</div>
+        <Accordion>{cardFinished}</Accordion> :
+        <div className={css.description}>Нет завершенных программ</div>
       }
 
     </div>

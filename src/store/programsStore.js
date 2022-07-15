@@ -133,7 +133,6 @@ export class ProgramsStore {
           }
         }
       );
-
     } catch (e) {
       throw new Error(e.message);
     }

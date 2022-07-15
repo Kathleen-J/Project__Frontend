@@ -1,14 +1,31 @@
 .wrapper {
-    padding: 100px 0;
+    padding: 120px 0;
     background-color: rgb(241, 241, 241);
     min-height: 100vh;
+  }
+
+  .header, .header_bottom{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .header_bottom {
+    margin-top: 100px;
+  }
+
+  .description {
+    margin-top: 70px;
+    text-align: center;
+    font-size: 17px;
   }
   
   .card {
     border: 2px solid #535353;
     box-shadow: 0 3px 5px rgba(44, 44, 44, 0.151);
     background-color: #3fceaae8;
-    margin: 25px 40px;
+    margin: 35px 40px;
     padding: 13px;
   }
   
@@ -21,6 +38,7 @@
     border-left: 1px solid grey;
     border-right: 1px solid grey;
     padding: 10px;
+    padding-bottom: 5px;
     text-align: left;
   }
   
@@ -28,23 +46,27 @@
     border-left: 1px solid grey;
     border-right: 1px solid grey;
     padding: 10px;
-    width: 25%;
+    line-height: 27px;
+    color: white;
+    text-shadow: 1px 1px 1px #605656;
   }
   
   .title_left,
   .cell_left {
     border-left: 0px;
+    width: 50%;
   }
   
   .title_rigth,
   .cell_right {
     border-right: 0px;
+    width: 20%;
   }
   
   .status {
+    margin-top: 30px;
     color: white;
     padding: 5px;
-    margin-left: 10px;
     font-size: 17px;
     font-family: "Montserrat";
     background-color: rgb(255, 174, 53);
@@ -116,7 +138,7 @@
     padding-top: 40px;
   }
   
-  .programs_title {
+  .programs_title, .module_title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -184,4 +206,8 @@
   .create_el {
     margin-bottom: 30px;
     margin-left: 10px;
+  }
+
+  .module {
+    padding: 10px 0;
   }
